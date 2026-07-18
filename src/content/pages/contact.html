@@ -1,93 +1,335 @@
 ---
-title: "Get Your Free Media Audit | Deep Sea Digital"
-description: "Ready to scale your business with cinema-grade visuals and a high-performance website? Contact Talon at Deep Sea Digital today."
+title: "Contact | DEL Records"
+description: "Get in touch with DEL Records for business inquiries, booking requests, press, and partnerships."
 permalink: "/contact/"
 ---
 
 {% extends "layouts/base.html" %}
 
 {% block head %}
-    <link rel="stylesheet" href="/assets/css/contact.css">
     <style>
-        /* This hides the honeypot field from humans but lets Netlify see it */
+        /* ============================================ */
+        /* DEL RECORDS | ABYSS THEME                    */
+        /* ============================================ */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --del-abyss: #0A0A0A; 
+            --del-red: #DC2626; 
+            --del-surface: #121212; 
+            --del-surface-light: #1A1A1A;
+            --del-frost: #A3A3A3;
+            --del-white: #FFFFFF;
+        }
+
         .hidden {
             display: none;
+        }
+
+        /* Typography */
+        .del-heading {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--del-white);
+            margin: 0;
+            line-height: 1.1;
+        }
+        
+        .del-body {
+            font-family: 'Inter', sans-serif !important;
+            color: var(--del-frost);
+            line-height: 1.6;
+        }
+
+        /* Layouts */
+        .del-section {
+            background-color: var(--del-abyss);
+            padding: clamp(4rem, 8vw, 6rem) 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1.5fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        /* ============================================ */
+        /* HERO HEADER                                  */
+        /* ============================================ */
+        #contact-hero {
+            padding: 10rem 1.5rem 4rem 1.5rem;
+            text-align: left;
+            position: relative;
+            background-color: var(--del-abyss);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1;
+        }
+
+        /* Cinematic Background Effects */
+        .noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .bg-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            animation: floatGlow 12s infinite ease-in-out alternate;
+        }
+
+        .glow-red {
+            background: rgba(220, 38, 38, 0.15);
+            width: 40vw;
+            height: 40vw;
+            top: -10%;
+            right: 10%;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-30px, 20px) scale(1.05); }
+        }
+
+        /* ============================================ */
+        /* FORM STYLES                                  */
+        /* ============================================ */
+        .contact-form-box {
+            background-color: var(--del-surface);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: clamp(2rem, 5vw, 3.5rem);
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--del-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background-color: var(--del-surface-light);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--del-white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(163, 163, 163, 0.5); 
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--del-red);
+            box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+        }
+
+        select.form-input {
+            cursor: pointer;
+            appearance: auto; /* Keeps the native dropdown arrow but styles the box */
+        }
+
+        select.form-input option {
+            background-color: var(--del-surface);
+            color: var(--del-white);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--del-red);
+            color: var(--del-white);
+            border: none;
+            padding: 1.25rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #EF4444;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================ */
+        /* INFO CARDS                                   */
+        /* ============================================ */
+        .info-card {
+            background-color: transparent;
+            border-left: 3px solid var(--del-red);
+            padding-left: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-header {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--del-frost);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--del-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-link:hover {
+            color: var(--del-red);
+        }
+        
+        .info-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--del-white);
+            line-height: 1.5;
+            margin: 0;
         }
     </style>
 {% endblock %}
 
 {% block body %}
 
-    <div id="banner-310">
-        <div class="cs-container">
-            <span class="cs-int-title">Start the Revolution</span>
-            <div class="cs-breadcrumbs">
-                <a href="/" class="cs-link">Home</a>
-                <a href="/contact/" class="cs-link cs-active">Contact Us</a>
-            </div>
+    <!-- ============================================ -->
+    <!--                 HERO HEADER                  -->
+    <!-- ============================================ -->
+    <header id="contact-hero">
+        <div class="noise-overlay"></div>
+        <div class="bg-glow glow-red"></div>
+        
+        <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+            <span style="color: var(--del-red); font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; display: block; margin-bottom: 1rem;">
+                Get In Touch
+            </span>
+            <h1 class="del-heading" style="font-size: clamp(3rem, 8vw, 5rem);">
+                CONTACT
+            </h1>
         </div>
-        <picture class="cs-background">
-            <img src="/assets/images/1234421.webp" alt="Cinema gear" width="1920" height="482" loading="eager" decoding="async">
-        </picture>
-    </div>
+    </header>
 
-    <section id="cs-contact-265">
-        <div class="cs-container">
-            <div class="cs-left-section">
-                <div class="cs-content">
-                    <span class="cs-topper">Contact Us</span>
-                    <h2 class="cs-title">Secure Your Spot</h2>
-                    <p class="cs-text">
-                        We only take on a limited number of clients per month to ensure every site gets the cinema-grade attention it deserves. Tell us about your business, and we'll reach out to schedule your free 4K media audit.
-                    </p>
-                </div>
+    <!-- ============================================ -->
+    <!--               CONTACT SECTION                -->
+    <!-- ============================================ -->
+    <section class="del-section">
+        <div class="contact-grid">
+            
+            <!-- Left: Contact Form -->
+            <div class="contact-form-box">
+                <h2 class="del-heading" style="font-size: 2rem; margin-bottom: 1rem; text-transform: none;">Business Inquiries</h2>
+                <p class="del-body" style="margin-bottom: 2.5rem; max-width: 500px;">
+                    For booking requests, press inquiries, brand partnerships, or demo submissions, please fill out the form below. Our team reviews all requests carefully.
+                </p>
 
-                <form id="cs-form-265" name="Contact Form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <form id="cs-form-265" name="DEL Contact Form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                     <p class="hidden">
                         <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
                     </p>
 
-                    <label>
-                        Name
-                        <input required type="text" id="name-265" name="name" placeholder="Full Name">
+                    <label class="form-label">
+                        Name / Company
+                        <input required type="text" class="form-input" id="name-265" name="name" placeholder="Your Name or Organization">
                     </label>
-                    <label>
+                    
+                    <label class="form-label">
                         Email
-                        <input required type="email" id="email-265" name="email" placeholder="Email Address">
+                        <input required type="email" class="form-input" id="email-265" name="email" placeholder="Email Address">
                     </label>
-                    <label>
-                        Phone
-                        <input required type="tel" id="phone-265" name="phone" placeholder="Phone Number">
+                    
+                    <label class="form-label">
+                        Phone (Optional)
+                        <input type="tel" class="form-input" id="phone-265" name="phone" placeholder="Phone Number">
                     </label>
-                    <label>
-                        Business Type
-                        <input type="text" id="find-265" name="business-type" placeholder="e.g. Restaurant, Automotive, Real Estate">
+                    
+                    <label class="form-label">
+                        Inquiry Type
+                        <select required class="form-input" id="type-265" name="inquiry-type">
+                            <option value="" disabled selected>Select inquiry type...</option>
+                            <option value="Booking Request">Booking Request</option>
+                            <option value="Press Inquiry">Press Inquiry</option>
+                            <option value="Brand Partnership">Brand Partnership</option>
+                            <option value="Demo Submission">Demo Submission</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                        </select>
                     </label>
-                    <label class="cs-label-message">
-                        What is your main goal? (More leads, better branding, etc.)
-                        <textarea required name="Message" id="message-265" placeholder="Tell us about your project..."></textarea>
+                    
+                    <label class="form-label">
+                        Message
+                        <textarea required class="form-textarea" name="Message" id="message-265" placeholder="Tell us about your inquiry..."></textarea>
                     </label>
-                    <button class="cs-button-solid cs-submit" type="submit">Submit My Request</button>
+                    
+                    <button class="submit-btn" type="submit">Send Message</button>
                 </form>
             </div>
 
-            <div class="cs-right-section">
-                <span class="cs-header">Email</span>
-                <a class="cs-link" href="mailto:{{ client.email }}">{{ client.email }}</a>
+            <!-- Right: Contact Info -->
+            <div style="padding-top: 1rem;">
+                <div class="info-card">
+                    <span class="info-header">General Inquiries</span>
+                    <a class="info-link" href="mailto:info@delrecords.com">info@delrecords.com</a>
+                </div>
                 
-                <span class="cs-header">Text or Call</span>
-                <a class="cs-link" href="tel:{{ client.phoneForTel }}">{{ client.phoneFormatted }}</a>
-                
-                <span class="cs-header">Based In</span>
-                <p class="cs-link">
-                    Chino, California <br>
-                    Serving Chino & Beyond
-                </p>
-                
-                <picture class="cs-bg-picture">
-                    <img src="/assets/images/1234421.webp" alt="Professional Cinema Gear" width="542" height="578" decoding="async">
-                </picture>
+                <div class="info-card">
+                    <span class="info-header">Headquarters</span>
+                    <p class="info-text">
+                        DEL Records, Inc.<br>
+                        Los Angeles, California
+                    </p>
+                </div>
+
+                <!-- Changed image to a live concert/crowd aesthetic to fit a label -->
+                <div style="margin-top: 4rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); aspect-ratio: 4/3;">
+                    <img src="/assets/images/cobian.jpg" alt="Live Concert" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%);" decoding="async">
+                </div>
             </div>
+
         </div>
     </section>
 

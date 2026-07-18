@@ -1,63 +1,319 @@
 ---
-title: "About The Agency | Deep Sea Digital"
-description: "Deep Sea Digital bridges the gap between high-end cinema and high-performance code. Founded in Chino, CA by Talon De La Torre."
+title: "About | DEL Records"
+description: "Founded in 2009 in Los Angeles, DEL Records is the premier independent record label defining the global Musica Mexicana movement."
 permalink: "/about/"
 ---
 
 {% extends "layouts/base.html" %}
 
 {% block head %}
-    <link rel="preload" as="image" href="/assets/images/09.webp" />
-    <link rel="stylesheet" href="/assets/css/about.css">
+    <style>
+        /* ============================================ */
+        /* DEL RECORDS | ABYSS THEME                    */
+        /* ============================================ */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --del-abyss: #0A0A0A; 
+            --del-red: #DC2626; 
+            --del-surface: #121212; 
+            --del-surface-light: #1A1A1A;
+            --del-frost: #A3A3A3;
+            --del-white: #FFFFFF;
+        }
+
+        /* Typography */
+        .del-heading {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--del-white);
+            margin: 0;
+            line-height: 1.1;
+        }
+        
+        .del-body {
+            font-family: 'Inter', sans-serif !important;
+            color: var(--del-frost);
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .del-btn-red {
+            background-color: var(--del-red); 
+            color: var(--del-white);
+            border: none;
+            padding: 1.25rem 2.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .del-btn-red:hover {
+            background-color: #EF4444;
+            transform: translateY(-2px);
+        }
+
+        /* Layouts */
+        .del-section {
+            background-color: var(--del-abyss);
+            padding: clamp(4rem, 8vw, 6rem) 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ============================================ */
+        /* HERO HEADER                                  */
+        /* ============================================ */
+        #about-hero {
+            padding: 10rem 1.5rem 4rem 1.5rem;
+            text-align: center;
+            position: relative;
+            background-color: var(--del-abyss);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+        }
+
+        /* Cinematic Background Effects */
+        .noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: grayscale(80%) brightness(0.3);
+        }
+
+        .bg-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 1;
+            animation: floatGlow 12s infinite ease-in-out alternate;
+        }
+
+        .glow-red {
+            background: rgba(220, 38, 38, 0.2);
+            width: 50vw;
+            height: 50vw;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes floatGlow {
+            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* ============================================ */
+        /* ABOUT CONTENT GRID                           */
+        /* ============================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (min-width: 850px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 5rem;
+            }
+        }
+
+        /* Image Composition */
+        .about-images {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+        }
+
+        .img-main {
+            width: 85%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .img-secondary {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 55%;
+            height: 60%;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 6px solid var(--del-abyss);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.9);
+        }
+
+        /* Text Content */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .topper {
+            color: var(--del-red);
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background-color: var(--del-surface);
+            border-left: 3px solid var(--del-red);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 0 12px 12px 0;
+            position: relative;
+        }
+
+        .quote-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--del-white);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-author {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            color: var(--del-white);
+            font-size: 1rem;
+        }
+
+        .quote-title {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            color: var(--del-frost);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        .quote-icon {
+            position: absolute;
+            bottom: 1rem;
+            right: 1.5rem;
+            opacity: 0.05;
+            width: 80px;
+            height: auto;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
 
-    <div id="banner-310">
-        <div class="cs-container">
-            <span class="cs-int-title">The Depth of Our Work</span>
-            <div class="cs-breadcrumbs">
-                <a href="/" class="cs-link">Home</a>
-                <a href="/about/" class="cs-link cs-active">About Us</a>
-            </div>
+    <!-- ============================================ -->
+    <!--                 HERO BANNER                  -->
+    <!-- ============================================ -->
+    <header id="about-hero">
+        <!-- Background Image of a Crowd/Concert -->
+        <img class="hero-bg-img" src="https://images.unsplash.com/photo-1540039155732-68048128522e?q=80&w=1920&auto=format&fit=crop" alt="Concert Crowd" loading="eager" decoding="async">
+        
+        <div class="noise-overlay"></div>
+        <div class="bg-glow glow-red"></div>
+        
+        <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+            <span style="color: var(--del-red); font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; display: block; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(0,0,0,0.8);">
+                The Architects of Musica Mexicana
+            </span>
+            <h1 class="del-heading" style="font-size: clamp(3rem, 8vw, 5.5rem); text-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+                OUR STORY
+            </h1>
         </div>
-        <picture class="cs-background">
-            <img src="/assets/images/09.webp" alt="Cinema gear and production" width="1920" height="482" loading="eager" decoding="async">
-        </picture>
-    </div>
+    </header>
 
-    <section id="RPsbs-313">
-        <div class="cs-container">
-            <div class="cs-image-group">
-                <picture class="cs-picture cs-picture1">
-                    <img src="/assets/images/210.webp" alt="Professional Cinematography" width="522" height="581" decoding="async">
-                </picture>
-                <picture class="cs-picture cs-picture2">
-                    <img src="/assets/images/valk1.webp" alt="Talon De La Torre - Founder" width="390" height="376" loading="lazy" decoding="async">
-                </picture>
+    <!-- ============================================ -->
+    <!--                 ABOUT SECTION                -->
+    <!-- ============================================ -->
+    <section class="del-section">
+        <div class="about-grid">
+            
+            <!-- Left: Composition Images -->
+            <div class="about-images">
+                <!-- Main Image: Studio / Executive vibe -->
+                <img class="img-main" src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop" alt="Recording Studio" decoding="async">
+                
+                <!-- Secondary Image: Live performance or artist vibe -->
+                <img class="img-secondary" src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=600&auto=format&fit=crop" alt="Live Performance" loading="lazy" decoding="async">
             </div>
-            <div class="cs-content">
-                <span class="cs-topper">The Mission</span>
-                <h2 class="cs-title">Where High-Bitrate Cinema Meets High-Performance Code</h2>
-                <p class="cs-text">
-                    Deep Sea Digital was founded in Chino to solve a fundamental disconnect in the digital space. Most businesses are forced to choose: hire a videographer who can't build a website, or hire a developer who doesn't understand lighting and composition.
+
+            <!-- Right: Content -->
+            <div class="about-content">
+                <span class="topper">The Legacy</span>
+                <h2 class="del-heading" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; text-transform: none; line-height: 1.2;">
+                    Pioneering the Sound of a Generation
+                </h2>
+                
+                <p class="del-body" style="margin-bottom: 1rem;">
+                    Founded in 2009 in Los Angeles, California by Angel del Villar, DEL Records was built on a simple premise: to give a massive, undeniable platform to the authentic stories of the streets. We didn't just join the Regional Mexican movement—we actively revolutionized it.
                 </p>
-                <p class="cs-text">
-                    We believe your brand deserves both. By combining cinema-grade equipment with custom, hand-coded frameworks, we ensure your digital storefront doesn't just look world-class—it runs that way, too.
+                <p class="del-body">
+                    Today, DEL Records stands as a global empire. With billions of streams, sold-out international tours, and a roster of the genre's most influential and viral artists, we control the narrative from the recording studio to the stadium stage. We are an independent powerhouse operating elite divisions in Publishing, Entertainment, and Studios.
                 </p>
-                <div class="cs-quote">
-                    <span class="cs-quote-text">
-                        "The goal isn't just to be seen; it's to be remembered. We create trust through visual excellence and technical precision."
-                    </span>
-                    <span class="cs-name">Talon De La Torre</span>
-                    <span class="cs-job">Founder, Deep Sea Digital</span>
-                    <img class="cs-quote-icon" loading="lazy" decoding="async" src="/assets/svgs/quote.svg" alt="quote icon" width="136" height="77">
+
+                <div class="quote-box">
+                    <p class="quote-text">
+                        "We don't follow trends. We sign the artists who create them. DEL Records is more than a record label; it's a culture."
+                    </p>
+                    <span class="quote-author">Angel del Villar</span>
+                    <span class="quote-title">Founder & CEO, DEL Records</span>
+                    
+                    <!-- SVG Quote Icon -->
+                    <svg class="quote-icon" viewBox="0 0 24 24" fill="var(--del-white)" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"/>
+                    </svg>
                 </div>
-                <a href="/contact/" class="cs-button-solid">Work With Us</a>
+
+                <a href="/contact/" class="del-btn-red">Join The Movement</a>
             </div>
+
         </div>
     </section>
 
+    <!-- Bring in your global Call To Action block if needed -->
     {% include 'sections/cta.html' %}
 
 {% endblock %}
