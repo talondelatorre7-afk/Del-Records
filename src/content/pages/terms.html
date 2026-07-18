@@ -1,0 +1,254 @@
+---
+title: "Terms of Service | DEL Records"
+description: "Terms of Service and conditions of use for the DEL Records website."
+permalink: "/terms/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <style>
+        /* ============================================ */
+        /* DEL RECORDS | LEGAL PAGES THEME              */
+        /* ============================================ */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --del-abyss: #0A0A0A; 
+            --del-red: #DC2626; 
+            --del-surface: #121212; 
+            --del-surface-light: #1A1A1A;
+            --del-frost: #A3A3A3;
+            --del-white: #FFFFFF;
+        }
+
+        /* Typography */
+        .del-heading {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--del-white);
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        /* ============================================ */
+        /* LEGAL HEADER                                 */
+        /* ============================================ */
+        #legal-hero {
+            padding: 12rem 1.5rem 4rem 1.5rem;
+            text-align: center;
+            position: relative;
+            background-color: var(--del-abyss);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Cinematic Background Effects */
+        .noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .bg-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            animation: floatGlow 12s infinite ease-in-out alternate;
+        }
+
+        .glow-red {
+            background: rgba(220, 38, 38, 0.15);
+            width: 40vw;
+            height: 40vw;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes floatGlow {
+            0% { opacity: 0.8; transform: translate(-50%, 0) scale(1); }
+            100% { opacity: 1; transform: translate(-50%, 20px) scale(1.05); }
+        }
+
+        /* ============================================ */
+        /* LEGAL CONTENT                                */
+        /* ============================================ */
+        .legal-section {
+            background-color: var(--del-abyss);
+            padding: 4rem 1.5rem 8rem 1.5rem;
+        }
+
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--del-surface);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: clamp(2rem, 6vw, 4rem);
+        }
+
+        .legal-content h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--del-white);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .legal-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .legal-content p {
+            font-family: 'Inter', sans-serif;
+            color: var(--del-frost);
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .legal-content ul {
+            font-family: 'Inter', sans-serif;
+            color: var(--del-frost);
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        .legal-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-contact-block {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: var(--del-surface-light);
+            border-left: 3px solid var(--del-red);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .legal-contact-block p {
+            margin-bottom: 0;
+        }
+
+        .legal-contact-block a {
+            color: var(--del-red);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .legal-contact-block a:hover {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                 LEGAL HEADER                 -->
+    <!-- ============================================ -->
+    <header id="legal-hero">
+        <div class="noise-overlay"></div>
+        <div class="bg-glow glow-red"></div>
+        
+        <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 2;">
+            <h1 class="del-heading" style="font-size: clamp(2.5rem, 6vw, 4rem);">
+                Terms of Service
+            </h1>
+            <p style="font-family: 'Inter', sans-serif; color: var(--del-frost); margin-top: 1rem;">
+                Last updated: February 2026
+            </p>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!--                 LEGAL CONTENT                -->
+    <!-- ============================================ -->
+    <section class="legal-section">
+        <div class="legal-content">
+            
+            <h2>1. Acceptance of Terms</h2>
+            <p>
+                By accessing and using the DEL Records website, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website.
+            </p>
+
+            <h2>2. Use of Website</h2>
+            <p>You agree to use our website only for lawful purposes and in a way that does not:</p>
+            <ul>
+                <li>Violate any applicable laws or regulations</li>
+                <li>Infringe upon the rights of others</li>
+                <li>Interfere with the operation of our website</li>
+                <li>Attempt to gain unauthorized access to our systems</li>
+            </ul>
+
+            <h2>3. Intellectual Property</h2>
+            <p>
+                All content on this website, including but not limited to text, graphics, logos, images, audio, video, and software, is the property of DEL Records, Inc. or its content suppliers and is protected by copyright and other intellectual property laws.
+            </p>
+
+            <h2>4. Music and Media Content</h2>
+            <p>
+                The music, videos, and other media content accessible through embedded players (such as Spotify and YouTube) are subject to the terms and conditions of those respective platforms. We do not grant any rights to download, copy, or redistribute such content.
+            </p>
+
+            <h2>5. Third-Party Links</h2>
+            <p>
+                Our website may contain links to third-party websites. We are not responsible for the content, privacy policies, or practices of any third-party websites.
+            </p>
+
+            <h2>6. Newsletter and Communications</h2>
+            <p>
+                By subscribing to our newsletter, you consent to receive promotional emails from DEL Records. You may unsubscribe at any time using the link provided in our emails.
+            </p>
+
+            <h2>7. Disclaimer of Warranties</h2>
+            <p>
+                This website is provided "as is" without any warranties, express or implied. We do not guarantee that the website will be error-free, secure, or continuously available.
+            </p>
+
+            <h2>8. Limitation of Liability</h2>
+            <p>
+                DEL Records, Inc. shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of or inability to use this website.
+            </p>
+
+            <h2>9. Changes to Terms</h2>
+            <p>
+                We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Your continued use of the website constitutes acceptance of the modified terms.
+            </p>
+
+            <h2>10. Governing Law</h2>
+            <p>
+                These terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.
+            </p>
+
+            <h2>11. Contact</h2>
+            <p>
+                For questions regarding these Terms of Service, please contact us at:
+            </p>
+            
+            <div class="legal-contact-block">
+                <p><strong>DEL Records, Inc.</strong></p>
+                <p>Los Angeles, California</p>
+                <p>Email: <a href="mailto:info@delrecords.com">info@delrecords.com</a></p>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

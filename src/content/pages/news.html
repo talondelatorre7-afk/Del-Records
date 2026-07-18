@@ -1,0 +1,305 @@
+---
+title: "News & Releases | DEL Records"
+description: "The latest music drops, tour announcements, press, and industry news from the premier independent Regional Mexican record label."
+permalink: "/news/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <style>
+        /* ============================================ */
+        /* DEL RECORDS | NEWS & BLOG THEME              */
+        /* ============================================ */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --del-abyss: #0A0A0A; 
+            --del-red: #DC2626; 
+            --del-surface: #121212; 
+            --del-surface-light: #1A1A1A;
+            --del-frost: #A3A3A3;
+            --del-white: #FFFFFF;
+        }
+
+        /* Typography */
+        .del-heading {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--del-white);
+            margin: 0;
+            line-height: 1.1;
+        }
+        
+        .del-body {
+            font-family: 'Inter', sans-serif !important;
+            color: var(--del-frost);
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .del-btn-red {
+            background-color: var(--del-red); 
+            color: var(--del-white);
+            border: none;
+            padding: 1rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin-top: 1.5rem;
+        }
+        
+        .del-btn-red:hover {
+            background-color: #EF4444;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================ */
+        /* HERO BANNER                                  */
+        /* ============================================ */
+        #news-hero {
+            padding: 12rem 1.5rem 6rem 1.5rem;
+            text-align: center;
+            position: relative;
+            background-color: var(--del-abyss);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .noise-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .bg-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            animation: floatGlow 12s infinite ease-in-out alternate;
+        }
+
+        .glow-red {
+            background: rgba(220, 38, 38, 0.2);
+            width: 40vw; height: 40vw;
+            top: -10%; left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes floatGlow {
+            0% { opacity: 0.8; transform: translate(-50%, 0) scale(1); }
+            100% { opacity: 1; transform: translate(-50%, 20px) scale(1.05); }
+        }
+
+        /* ============================================ */
+        /* BLOG LISTING GRID                            */
+        /* ============================================ */
+        #blog-listing {
+            background-color: var(--del-abyss);
+            padding: 4rem 1.5rem 8rem 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .del-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .del-article {
+            display: grid;
+            grid-template-columns: 1fr;
+            background-color: var(--del-surface);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .del-article:hover {
+            border-color: rgba(220, 38, 38, 0.3); /* Subtle red border on hover */
+            transform: translateY(-5px);
+        }
+
+        @media (min-width: 768px) {
+            .del-article {
+                grid-template-columns: 1fr 1.2fr;
+            }
+        }
+
+        .del-article-image {
+            width: 100%;
+            height: 100%;
+            min-height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .del-article-image img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: transform 0.5s ease;
+        }
+
+        .del-article:hover .del-article-image img {
+            transform: scale(1.05);
+        }
+
+        .del-article-group {
+            padding: clamp(2rem, 4vw, 3rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Meta Data */
+        .del-meta-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--del-frost);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .del-meta-dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--del-red);
+            border-radius: 50%;
+        }
+
+        .del-article-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--del-white);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        .del-article-desc {
+            font-family: 'Inter', sans-serif;
+            color: var(--del-frost);
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 4rem 0;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                  BANNER                      -->
+    <!-- ============================================ -->
+    <header id="news-hero">
+        <div class="noise-overlay"></div>
+        <div class="bg-glow glow-red"></div>
+        
+        <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 2;">
+            <span style="color: var(--del-red); font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; display: block; margin-bottom: 1rem;">
+                The Wire
+            </span>
+            <h1 class="del-heading" style="font-size: clamp(3rem, 6vw, 4.5rem);">
+                News & Press
+            </h1>
+            <p class="del-body" style="margin-top: 1.5rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                The latest music drops, exclusive tour announcements, and industry updates from the artists defining the global movement.
+            </p>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!--               BLOG LISTING                   -->
+    <!-- ============================================ -->
+    <section id="blog-listing">
+        <div class="del-container">
+            
+            {% if collections.post | length == 0 %}
+                <div class="no-posts">
+                    <h2 class="del-heading" style="font-size: 2rem;">No Transmissions Found</h2>
+                    <p class="del-body">Check back later for the latest news and releases.</p>
+                </div>
+            {% else %}
+                {%- for post in collections.post | reverse -%}
+                    <article class="del-article">
+                        
+                        <picture class="del-article-image">
+                            <!--Mobile Image-->
+                            <source media="(max-width: 600px)" srcset="{% getUrl post.data.image | resize({ width: 576, height: 400 }) | avif %}" type="image/avif">
+                            <source media="(max-width: 600px)" srcset="{% getUrl post.data.image | resize({ width: 576, height: 400 }) | webp %}" type="image/webp">
+                            <source media="(max-width: 600px)" srcset="{% getUrl post.data.image | resize({ width: 576, height: 400 }) | jpeg %}" type="image/jpeg">
+                            <!--Tablet Image-->
+                            <source media="(max-width: 1024px)" srcset="{% getUrl post.data.image | resize({ width: 1142, height: 614 }) | avif %}" type="image/avif">
+                            <source media="(max-width: 1024px)" srcset="{% getUrl post.data.image | resize({ width: 1142, height: 614 }) | webp %}" type="image/webp">
+                            <source media="(max-width: 1024px)" srcset="{% getUrl post.data.image | resize({ width: 1142, height: 614 }) | jpeg %}" type="image/jpeg">
+                            <!--Desktop Image-->
+                            <source media="(min-width: 1024px)" srcset="{% getUrl post.data.image | resize({ width: 1648, height: 800 }) | avif %}" type="image/avif">
+                            <source media="(min-width: 1024px)" srcset="{% getUrl post.data.image | resize({ width: 1648, height: 800 }) | webp %}" type="image/webp">
+                            <source media="(min-width: 1024px)" srcset="{% getUrl post.data.image | resize({ width: 1648, height: 800 }) | jpeg %}" type="image/jpeg">
+                            
+                            <img src="{% getUrl post.data.image | resize({ width: 1648, height: 800 }) | jpeg %}" alt="{{ post.data.alt }}" width="824" height="400" decoding="async">
+                        </picture>
+                        
+                        <div class="del-article-group">
+                            <div class="del-meta-group">
+                                <span>{{ post.data.author }}</span>
+                                <span class="del-meta-dot" aria-hidden="true"></span>
+                                <span>{{ post.date | postDate }}</span>
+                            </div>
+                            
+                            <h2 class="del-article-title">
+                                {{ post.data.title }}
+                            </h2>
+                            
+                            <p class="del-article-desc">
+                                {{ post.data.description }}
+                            </p>
+                            
+                            <a href="{{ post.url }}" class="del-btn-red">Read Article</a>
+                        </div>
+                    </article>
+                {%- endfor -%}
+            {% endif %}
+            
+        </div>
+
+        <!-- If you still want the featured posts component at the bottom -->
+        <div style="margin-top: 6rem;">
+            {% include 'components/featured-posts.html' %}
+        </div>
+        
+    </section>
+{% endblock %}
