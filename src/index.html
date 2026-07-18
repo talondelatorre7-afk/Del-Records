@@ -1,0 +1,443 @@
+---
+title: "SUMMIT RECORDS | Underground & Experimental Pop"
+description: "An exclusive distribution collective for non-mainstream artists. Keep 90% of your royalties with lifetime distribution. Home to HVZE."
+permalink: "/"
+tags: "sitemap"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/assets/css/critical.css" />
+
+    {% if client.isProduction %}
+        <link rel="preload" href="/assets/css/local.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="/assets/css/local.css">
+        </noscript>
+    {% else %}
+        <link rel="stylesheet" href="/assets/css/local.css" />
+    {% endif %}
+
+    <style>
+        /* ============================================ */
+        /* SUMMIT RECORDS MASTER STYLES                 */
+        /* ============================================ */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;700;900&display=swap');
+
+        :root {
+            --summit-abyss: #050505; 
+            --summit-cyan: #00E0FF;
+            --summit-frost: #B8EFFF;
+            --summit-white: #FFFFFF;
+        }
+
+        /* Typography */
+        .summit-heading {
+            font-family: 'Space Grotesk', sans-serif !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--summit-white);
+            margin: 0;
+            word-wrap: break-word; 
+        }
+        
+        .summit-body {
+            font-family: 'JetBrains Mono', monospace !important;
+            color: var(--summit-frost);
+            line-height: 1.6;
+        }
+
+        /* UI Elements & Buttons */
+        .summit-btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .summit-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 1.25rem 3rem;
+            text-decoration: none;
+            border-radius: 0; 
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .summit-btn-primary {
+            background-color: var(--summit-cyan);
+            color: var(--summit-abyss);
+            border: 2px solid var(--summit-cyan);
+        }
+
+        .summit-btn-primary:hover {
+            background-color: transparent;
+            color: var(--summit-cyan);
+            box-shadow: 0 0 15px rgba(0, 224, 255, 0.4);
+        }
+
+        .summit-btn-secondary {
+            background-color: transparent;
+            color: var(--summit-white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .summit-btn-secondary:hover {
+            border-color: var(--summit-cyan);
+            color: var(--summit-cyan);
+        }
+
+        /* ============================================ */
+        /* MOBILE-FIRST HERO SETUP (Tight & Compact)    */
+        /* ============================================ */
+        #summit-hero {
+            position: relative;
+            padding: 8rem 0 5rem 0; /* Tight spacing for phones */
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 224, 255, 0.2);
+        }
+
+        .hero-title-text {
+            font-size: 3rem !important; /* Fits perfectly on iPhone */
+            line-height: 1 !important;
+            margin-bottom: 1.5rem !important;
+        }
+
+        /* Hero Background */
+        #summit-hero .cs-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            background-color: var(--summit-abyss);
+        }
+
+        #summit-hero .cs-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(5, 5, 5, 0.7) 0%, rgba(5, 5, 5, 1) 100%);
+            z-index: 1;
+        }
+
+        #summit-hero .cs-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(80%) contrast(150%) brightness(0.6);
+        }
+
+        /* ============================================ */
+        /* DESKTOP HERO OVERRIDES (Massive & Cinematic) */
+        /* ============================================ */
+        @media (min-width: 1024px) {
+            #summit-hero {
+                padding: 14rem 0 10rem 0 !important;
+                min-height: 95vh !important;
+            }
+            .hero-title-text {
+                font-size: 6.5rem !important;
+                line-height: 0.9 !important;
+                margin-bottom: 2rem !important;
+            }
+        }
+
+        /* Continuous Scrolling Marquee */
+        .marquee-wrapper {
+            background-color: var(--summit-cyan);
+            padding: 1rem 0;
+            overflow: hidden;
+            display: flex;
+            white-space: nowrap;
+            border-bottom: 1px solid var(--summit-abyss);
+        }
+        
+        .marquee-content {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+        
+        .marquee-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--summit-abyss);
+            text-transform: uppercase;
+            padding: 0 2rem;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Layout Grids */
+        .deal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(1.5rem, 4vw, 2rem);
+            margin-top: clamp(2rem, 5vw, 4rem);
+        }
+
+        .deal-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2rem);
+            background: rgba(255, 255, 255, 0.02);
+            transition: border-color 0.3s ease;
+        }
+
+        .deal-card:hover {
+            border-color: var(--summit-cyan);
+        }
+
+        .deal-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(0, 224, 255, 0.2);
+            line-height: 1;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Utility to force sections black with dynamic mobile padding */
+        .summit-section {
+            background-color: var(--summit-abyss) !important;
+            padding: clamp(3rem, 8vw, 6rem) 0;
+        }
+
+        /* Mobile Fixes */
+        @media (max-width: 768px) {
+            .summit-btn {
+                width: 100%; 
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                   HERO                       -->
+    <!-- ============================================ -->
+    <section id="summit-hero">
+        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; width: 100%;">
+            <span class="summit-body" style="color: var(--summit-cyan); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 1rem;">
+                The High Altitude Standard
+            </span>
+            
+            <!-- This text uses the custom class to jump from 3rem on mobile to 6.5rem on desktop -->
+            <h1 class="summit-heading hero-title-text">
+                ELEVATING<br>
+                <span style="color: transparent; -webkit-text-stroke: 2px var(--summit-white);">THE UNDERGROUND.</span>
+            </h1>
+            
+            <p class="summit-body" style="font-size: 1.1rem; max-width: 550px; margin-bottom: clamp(2rem, 5vw, 3rem); opacity: 0.8;">
+                We don't chase viral trends. We build sanctuaries for experimental audio. Keep your masters, get lifetime global distribution, and join an uncompromising roster.
+            </p>
+            
+            <div class="summit-btn-group">
+                <a href="/submit/" class="summit-btn summit-btn-primary">Submit Demo</a>
+                <a href="/roster/" class="summit-btn summit-btn-secondary">View Roster</a>
+            </div>
+        </div>
+
+        <div class="cs-background">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1920&auto=format&fit=crop" alt="Dark mountain peaks" loading="eager" decoding="async">
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                  MARQUEE                     -->
+    <!-- ============================================ -->
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <span class="marquee-text">/// NO MAINSTREAM /// EXPERIMENTAL POP ///</span>
+            <span class="marquee-text">KEEP YOUR MASTERS /// LIFETIME DISTRIBUTION</span>
+            <span class="marquee-text">/// NO MAINSTREAM /// EXPERIMENTAL POP ///</span>
+            <span class="marquee-text">KEEP YOUR MASTERS /// LIFETIME DISTRIBUTION</span>
+            <span class="marquee-text">/// NO MAINSTREAM /// EXPERIMENTAL POP ///</span>
+            <span class="marquee-text">KEEP YOUR MASTERS /// LIFETIME DISTRIBUTION</span>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--                 MANIFESTO                    -->
+    <!-- ============================================ -->
+    <section class="summit-section" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="cs-container" style="max-width: 900px; margin: 0 auto; padding: 0 1rem; text-align: center;">
+            <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: clamp(1.5rem, 4vw, 2rem);">WE BUILD ARTIFACTS, NOT CONTENT.</h2>
+            <p class="summit-body" style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 1.5rem;">
+                The industry is obsessed with algorithms, 15-second hooks, and rapid-fire releases. Summit Records was engineered as a counter-culture to the mainstream machine. 
+            </p>
+            <p class="summit-body" style="font-size: 1.1rem; opacity: 0.8;">
+                We are looking for architects of sound. If your audio pushes boundaries, defies traditional genres, and refuses to conform, we provide the infrastructure to distribute it globally without demanding ownership of your art.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                 THE DEAL                     -->
+    <!-- ============================================ -->
+    <section class="summit-section">
+        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 1rem;">THE BLUEPRINT</h2>
+                <p class="summit-body">We dismantled the traditional record label contract. Our infrastructure is built for artists who demand creative control and fair splits.</p>
+            </div>
+
+            <div class="deal-grid">
+                <div class="deal-card">
+                    <span class="deal-num">01</span>
+                    <h3 class="summit-heading" style="font-size: 1.5rem; margin-bottom: 1rem;">10% Split</h3>
+                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.7;">We take a lean 10% of generated revenue. The other 90% goes straight to you. No hidden fees, no recoupment traps.</p>
+                </div>
+                <div class="deal-card">
+                    <span class="deal-num">02</span>
+                    <h3 class="summit-heading" style="font-size: 1.5rem; margin-bottom: 1rem;">Master Ownership</h3>
+                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.7;">You made it, you own it. You retain 100% ownership of your masters forever. We are your distributor, not your landlord.</p>
+                </div>
+                <div class="deal-card">
+                    <span class="deal-num">03</span>
+                    <h3 class="summit-heading" style="font-size: 1.5rem; margin-bottom: 1rem;">Lifetime Push</h3>
+                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.7;">Once you hit the Summit, you stay on. Global distribution across all major DSPs for the lifetime of the track.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--               HOW IT WORKS                   -->
+    <!-- ============================================ -->
+    <section class="summit-section" style="background-color: #080808 !important; border-top: 1px solid rgba(0,224,255,0.1);">
+        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <div style="margin-bottom: clamp(2rem, 5vw, 3rem);">
+                <span class="summit-body" style="color: var(--summit-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">The Process</span>
+                <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 2.5rem);">HOW TO ASCEND</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: clamp(2rem, 5vw, 3rem);">
+                <div style="border-left: 2px solid var(--summit-cyan); padding-left: 1.5rem;">
+                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.5rem;">1. SUBMIT AUDIO</h3>
+                    <p class="summit-body" style="font-size: 0.9rem; opacity: 0.8;">Send us your best unreleased tracks via our portal. We review every submission manually.</p>
+                </div>
+                <div style="border-left: 2px solid var(--summit-cyan); padding-left: 1.5rem;">
+                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.5rem;">2. CURATION</h3>
+                    <p class="summit-body" style="font-size: 0.9rem; opacity: 0.8;">If your sound aligns with the Summit ethos, we send over a straightforward, transparent distribution agreement.</p>
+                </div>
+                <div style="border-left: 2px solid var(--summit-cyan); padding-left: 1.5rem;">
+                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.5rem;">3. GLOBAL PUSH</h3>
+                    <p class="summit-body" style="font-size: 0.9rem; opacity: 0.8;">We handle the metadata, DSP delivery, and technical backend. You focus on making the next record.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--              ANCHOR ARTIST                   -->
+    <!-- ============================================ -->
+    <section class="summit-section" style="border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; flex-wrap: wrap; gap: clamp(2rem, 6vw, 4rem); align-items: center;">
+            
+            <div style="flex: 1; min-width: 300px; position: relative;">
+                <div style="position: absolute; top: -15px; left: -15px; width: 100px; height: 100px; border-top: 2px solid var(--summit-cyan); border-left: 2px solid var(--summit-cyan); z-index: 0;"></div>
+                <img src="https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=800&auto=format&fit=crop" alt="HVZE Profile" style="width: 100%; height: auto; position: relative; z-index: 1; filter: grayscale(50%);">
+            </div>
+
+            <div style="flex: 1; min-width: 300px;">
+                <span class="summit-body" style="color: var(--summit-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 1rem;">Anchor Spotlight</span>
+                <h2 class="summit-heading" style="font-size: clamp(2.5rem, 6vw, 3rem); margin-bottom: 1.5rem;">HVZE</h2>
+                <p class="summit-body" style="margin-bottom: 2rem;">
+                    Pioneering the Christian Experimental Pop space. HVZE represents the core of the Summit ethos—raw, unapologetic audio that refuses to fit into a commercial box.
+                </p>
+                <div style="border-left: 2px solid var(--summit-cyan); padding-left: 1.5rem; margin-bottom: 2.5rem;">
+                    <p class="summit-body" style="color: var(--summit-white); font-style: italic; margin-bottom: 0.5rem;">
+                        "We aren't building a commercial factory. We're building a high-altitude sanctuary for artists who break the mold."
+                    </p>
+                    <span class="summit-heading" style="font-size: 0.9rem; color: var(--summit-cyan);">Talon De La Torre / Label Architect</span>
+                </div>
+                <a href="/hvze/" class="summit-btn summit-btn-secondary">Explore HVZE</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--             RELEASES GRID                    -->
+    <!-- ============================================ -->
+    <section class="summit-section">
+        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: clamp(2rem, 5vw, 3rem); flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <span class="summit-body" style="color: var(--summit-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Database</span>
+                    <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 2.5rem);">LATEST RELEASES</h2>
+                </div>
+                <!-- Links directly to HVZE Spotify -->
+                <a href="https://open.spotify.com/artist/0Qb2S5cOWhtWhNoncpS2Li?si=zMiDhfuOTf-H7k_HI4R_zQ" target="_blank" rel="noopener" class="summit-btn summit-btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;">View Full Database</a>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <!-- Release 1 -->
+                <a href="https://open.spotify.com/track/2TyFiVtJqPHdnyEcQ7jMZY?si=4a702b4f05d947e6" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 1/1; overflow: hidden; background: #111; display: block;">
+                    <img src="https://i.scdn.co/image/ab67616d0000e1a3cfcbbf0a08f2022e4ed26950" alt="HVZE Latest Release 1" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                </a>
+                <!-- Release 2 -->
+                <a href="https://open.spotify.com/track/6qJtAO1XXxtFMBnQmfIVeL?si=8e02013e6a634ca3" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 1/1; overflow: hidden; background: #111; display: block;">
+                    <img src="https://i1.sndcdn.com/artworks-bxIDtgvn8fdKW4WV-YaVlTw-t500x500.png" alt="HVZE Latest Release 2" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                </a>
+                <!-- Release 3 -->
+                <a href="https://open.spotify.com/track/1FDaQ0a5rSzUg6td9LwrSA?si=33e578f2f605415e" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 1/1; overflow: hidden; background: #111; display: block;">
+                    <img src="https://i1.sndcdn.com/artworks-Hb7YVMWFDwv2RJtF-HOJB4Q-t500x500.png" alt="HVZE Latest Release 3" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                </a>
+                <!-- Release 4 -->
+                <a href="https://open.spotify.com/track/75tXPnfUnokGVnwG1cbYBP?si=6721feda386d40e8" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 1/1; overflow: hidden; background: #111; display: block;">
+                    <img src="https://i1.sndcdn.com/artworks-iD3ipgXQ0dMqX8dV-d2e2gg-t500x500.png" alt="HVZE Latest Release 4" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                     FAQ                      -->
+    <!-- ============================================ -->
+    <section class="summit-section" style="border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="cs-container" style="max-width: 900px; margin: 0 auto; padding: 0 1rem;">
+            <div style="text-align: center; margin-bottom: clamp(2rem, 6vw, 4rem);">
+                <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 2.5rem);">TRANSPARENCY (FAQ)</h2>
+            </div>
+            
+            <div style="display: grid; gap: clamp(1rem, 4vw, 2rem);">
+                <div style="border: 1px solid rgba(255,255,255,0.1); padding: clamp(1.5rem, 4vw, 2rem); background: rgba(255,255,255,0.02);">
+                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--summit-cyan);">DO I REALLY KEEP 90%?</h3>
+                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.8;">Yes. You keep 90% of all royalties generated from the tracks distributed through us. The 10% covers the lifetime backend management and placement of your audio.</p>
+                </div>
+                <div style="border: 1px solid rgba(255,255,255,0.1); padding: clamp(1.5rem, 4vw, 2rem); background: rgba(255,255,255,0.02);">
+                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--summit-cyan);">IS THERE AN UPFRONT FEE?</h3>
+                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.8;">No. We operate strictly on the backend split. We don't charge submission fees, upload fees, or maintenance fees.</p>
+                </div>
+                <div style="border: 1px solid rgba(255,255,255,0.1); padding: clamp(1.5rem, 4vw, 2rem); background: rgba(255,255,255,0.02);">
+                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--summit-cyan);">WHAT GENRES DO YOU ACCEPT?</h3>
+                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.8;">Our anchor artist operates in Christian Experimental Pop, but we are open to any non-mainstream, avant-garde, or strictly underground sounds. If it sounds like commercial radio, it's not for us.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'sections/cta.html' %}
+{% endblock %}

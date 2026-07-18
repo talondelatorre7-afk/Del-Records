@@ -1,0 +1,86 @@
+<!-- ============================================ -->
+<!--                   Footer                     -->
+<!-- ============================================ -->
+
+<style>
+    /* SUMMIT RECORDS FOOTER OVERRIDES */
+    /* This forces the template to drop its massive default spacing */
+    #cs-footer-275 {
+        padding-top: 3.5rem !important; 
+        padding-bottom: 1rem !important;
+        background-color: var(--dark);
+        border-top: 1px solid rgba(12, 150, 168, 0.2);
+    }
+    
+    #cs-footer-275 .cs-logo-img {
+        /* Force the logo to a tighter, cleaner size */
+        max-width: 150px !important; 
+        height: auto;
+        display: block;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Ensure the copyright section hugs the bottom border tightly */
+    #cs-footer-275 .cs-copyright {
+        margin-top: 2rem !important;
+        padding: 1.5rem 0 0 0 !important;
+    }
+</style>
+
+<footer id="cs-footer-275">
+    <div class="cs-container">
+        <div class="cs-logo-group">
+            <a aria-label="go back to home" class="cs-logo" href="/">
+                <img class="cs-logo-img" loading="lazy" decoding="async" src="/assets/images/deep1.png" alt="Summit Records Logo" width="150" height="auto">
+            </a>
+            <p class="cs-text" style="color: var(--summit-frost); font-family: 'JetBrains Mono', monospace;">
+                The exclusive distribution collective for non-mainstream talent. High-altitude audio, 10% splits, and lifetime global push.
+            </p>
+            <div class="cs-social">
+                <a class="cs-social-link" aria-label="visit google profile" href="{{ client.address.mapLink }}" target="_blank" rel="noopener">
+                    <img class="cs-social-img" aria-hidden="true" loading="lazy" decoding="async" src="/assets/svgs/google.svg" alt="google" width="11" height="11">
+                </a>
+                <a class="cs-social-link" aria-label="visit instagram profile" href="{{ client.socials.instagram }}" target="_blank" rel="noopener">
+                    <img class="cs-social-img" aria-hidden="true" loading="lazy" decoding="async" src="/assets/svgs/instagram.svg" alt="instagram" width="11" height="11">
+                </a>
+            </div>
+        </div>
+        
+        <ul class="cs-nav">
+            <li class="cs-nav-li">
+                <span class="cs-header" style="color: var(--summit-cyan); font-family: 'Space Grotesk', sans-serif; text-transform: uppercase;">Hub</span>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/" style="color: var(--summit-white);">Home</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="#roster" style="color: var(--summit-white);">Active Roster</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/hvze/" style="color: var(--summit-white);">HVZE Spotlight</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/submit/" style="color: var(--summit-white);">Submit Demo</a>
+            </li>
+        </ul>
+        
+        <ul class="cs-contact">
+            <li class="cs-nav-li">
+                <span class="cs-header" style="color: var(--summit-cyan); font-family: 'Space Grotesk', sans-serif; text-transform: uppercase;">Contact</span>
+            </li>
+            <li class="cs-contact-li">
+                <a class="cs-contact-link" href="tel:{{ client.phoneForTel }}" style="color: var(--summit-white);">{{ client.phoneFormatted }}</a>
+            </li>
+            <li class="cs-contact-li">
+                <a class="cs-contact-link" href="mailto:{{ client.email }}" style="color: var(--summit-white);">{{ client.email }}</a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="cs-copyright" style="text-align: center; width: 100%; border-top: 1px solid rgba(0, 224, 255, 0.2);">
+        <span style="color: var(--summit-frost); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+            Copyright &copy; 2026 SUMMIT RECORDS. <br>
+            Engineered by <a href="https://deepseadigital.online/" target="_blank" rel="noopener" style="color: var(--summit-cyan); text-decoration: none; font-weight: bold;">Deep Sea Digital</a>.
+        </span>
+    </div>
+</footer>

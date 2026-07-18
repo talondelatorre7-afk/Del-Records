@@ -1,0 +1,94 @@
+---
+title: "Get Your Free Media Audit | Deep Sea Digital"
+description: "Ready to scale your business with cinema-grade visuals and a high-performance website? Contact Talon at Deep Sea Digital today."
+permalink: "/contact/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/assets/css/contact.css">
+    <style>
+        /* This hides the honeypot field from humans but lets Netlify see it */
+        .hidden {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div id="banner-310">
+        <div class="cs-container">
+            <span class="cs-int-title">Start the Revolution</span>
+            <div class="cs-breadcrumbs">
+                <a href="/" class="cs-link">Home</a>
+                <a href="/contact/" class="cs-link cs-active">Contact Us</a>
+            </div>
+        </div>
+        <picture class="cs-background">
+            <img src="/assets/images/1234421.webp" alt="Cinema gear" width="1920" height="482" loading="eager" decoding="async">
+        </picture>
+    </div>
+
+    <section id="cs-contact-265">
+        <div class="cs-container">
+            <div class="cs-left-section">
+                <div class="cs-content">
+                    <span class="cs-topper">Contact Us</span>
+                    <h2 class="cs-title">Secure Your Spot</h2>
+                    <p class="cs-text">
+                        We only take on a limited number of clients per month to ensure every site gets the cinema-grade attention it deserves. Tell us about your business, and we'll reach out to schedule your free 4K media audit.
+                    </p>
+                </div>
+
+                <form id="cs-form-265" name="Contact Form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <p class="hidden">
+                        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+
+                    <label>
+                        Name
+                        <input required type="text" id="name-265" name="name" placeholder="Full Name">
+                    </label>
+                    <label>
+                        Email
+                        <input required type="email" id="email-265" name="email" placeholder="Email Address">
+                    </label>
+                    <label>
+                        Phone
+                        <input required type="tel" id="phone-265" name="phone" placeholder="Phone Number">
+                    </label>
+                    <label>
+                        Business Type
+                        <input type="text" id="find-265" name="business-type" placeholder="e.g. Restaurant, Automotive, Real Estate">
+                    </label>
+                    <label class="cs-label-message">
+                        What is your main goal? (More leads, better branding, etc.)
+                        <textarea required name="Message" id="message-265" placeholder="Tell us about your project..."></textarea>
+                    </label>
+                    <button class="cs-button-solid cs-submit" type="submit">Submit My Request</button>
+                </form>
+            </div>
+
+            <div class="cs-right-section">
+                <span class="cs-header">Email</span>
+                <a class="cs-link" href="mailto:{{ client.email }}">{{ client.email }}</a>
+                
+                <span class="cs-header">Text or Call</span>
+                <a class="cs-link" href="tel:{{ client.phoneForTel }}">{{ client.phoneFormatted }}</a>
+                
+                <span class="cs-header">Based In</span>
+                <p class="cs-link">
+                    Chino, California <br>
+                    Serving Chino & Beyond
+                </p>
+                
+                <picture class="cs-bg-picture">
+                    <img src="/assets/images/1234421.webp" alt="Professional Cinema Gear" width="542" height="578" decoding="async">
+                </picture>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

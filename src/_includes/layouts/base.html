@@ -1,0 +1,51 @@
+<!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ description }}">
+        <link rel="canonical" href="{{ client.domain }}{{ page.url }}">
+        <meta name="generator" content="{{ eleventy.generator }}">
+
+        <meta property="og:title" content="{{ title }}"/>
+        <meta property="og:description" content="{{ description }}"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="{{ client.domain }}{{ page.url }}"/>
+        <meta property="og:image" content="{{ image or "/assets/images/logo-small.png" }}"/>
+        <meta property="og:image:secure_url" content="{{ image or "/assets/images/logo-small.png" }}"/>
+
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96"/>
+        <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg"/>
+        <link rel="shortcut icon" href="/assets/favicons/favicon.ico"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png"/>
+        <meta name="apple-mobile-web-app-title" content="Deep Sea Digital"/>
+        <link rel="manifest" href="/assets/favicons/site.webmanifest"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <link rel="preload" as="image" href="/assets/svgs/logo-black.svg">
+
+        <link rel="stylesheet" href="/assets/css/root.css">
+        <script defer src="/assets/js/dark.js"></script>
+        <script defer src="/assets/js/nav.js"></script>
+
+        {% block head %}{% endblock %}
+
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <a class="skip" aria-label="skip to main content" href="#main">Click To Skip To Main Content</a>
+
+        {% include "sections/header.html" %}
+        <main id="main">
+            {% block body %}{% endblock %}
+        </main>
+        {% include "sections/footer.html" %}
+
+    </body>
+</html>

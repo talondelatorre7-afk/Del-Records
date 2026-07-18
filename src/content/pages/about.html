@@ -1,0 +1,63 @@
+---
+title: "About The Agency | Deep Sea Digital"
+description: "Deep Sea Digital bridges the gap between high-end cinema and high-performance code. Founded in Chino, CA by Talon De La Torre."
+permalink: "/about/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="preload" as="image" href="/assets/images/09.webp" />
+    <link rel="stylesheet" href="/assets/css/about.css">
+{% endblock %}
+
+{% block body %}
+
+    <div id="banner-310">
+        <div class="cs-container">
+            <span class="cs-int-title">The Depth of Our Work</span>
+            <div class="cs-breadcrumbs">
+                <a href="/" class="cs-link">Home</a>
+                <a href="/about/" class="cs-link cs-active">About Us</a>
+            </div>
+        </div>
+        <picture class="cs-background">
+            <img src="/assets/images/09.webp" alt="Cinema gear and production" width="1920" height="482" loading="eager" decoding="async">
+        </picture>
+    </div>
+
+    <section id="RPsbs-313">
+        <div class="cs-container">
+            <div class="cs-image-group">
+                <picture class="cs-picture cs-picture1">
+                    <img src="/assets/images/210.webp" alt="Professional Cinematography" width="522" height="581" decoding="async">
+                </picture>
+                <picture class="cs-picture cs-picture2">
+                    <img src="/assets/images/valk1.webp" alt="Talon De La Torre - Founder" width="390" height="376" loading="lazy" decoding="async">
+                </picture>
+            </div>
+            <div class="cs-content">
+                <span class="cs-topper">The Mission</span>
+                <h2 class="cs-title">Where High-Bitrate Cinema Meets High-Performance Code</h2>
+                <p class="cs-text">
+                    Deep Sea Digital was founded in Chino to solve a fundamental disconnect in the digital space. Most businesses are forced to choose: hire a videographer who can't build a website, or hire a developer who doesn't understand lighting and composition.
+                </p>
+                <p class="cs-text">
+                    We believe your brand deserves both. By combining cinema-grade equipment with custom, hand-coded frameworks, we ensure your digital storefront doesn't just look world-class—it runs that way, too.
+                </p>
+                <div class="cs-quote">
+                    <span class="cs-quote-text">
+                        "The goal isn't just to be seen; it's to be remembered. We create trust through visual excellence and technical precision."
+                    </span>
+                    <span class="cs-name">Talon De La Torre</span>
+                    <span class="cs-job">Founder, Deep Sea Digital</span>
+                    <img class="cs-quote-icon" loading="lazy" decoding="async" src="/assets/svgs/quote.svg" alt="quote icon" width="136" height="77">
+                </div>
+                <a href="/contact/" class="cs-button-solid">Work With Us</a>
+            </div>
+        </div>
+    </section>
+
+    {% include 'sections/cta.html' %}
+
+{% endblock %}
