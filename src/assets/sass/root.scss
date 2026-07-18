@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// CODESTITCH GLOBAL STYLES
+// DEL RECORDS GLOBAL STYLES
 // Core stylesheet containing CSS variables, dark mode styles, base element
 // styling, typography rules, utility classes, component styles, navigation,
 // footer, and other repeated section styles for the entire site
@@ -11,20 +11,19 @@
 
 /* CodeStitch Core Styles + Reset */
 @media only screen and (min-width: 0px) {
-	/* All elements in the library derive their variables and base styles from this central sheet, simplifying site-wide edits. For instance, if you want to modify how your h2's appear across the site, you just update it once in the global styles, and the changes apply everywhere. */
     :root {
-        --primary: #42E9FF;            /* Electric Blue - For buttons & highlights */
-        --primaryLight: #42E9FF;       /* Lighter Blue */
-        --secondary: #000000;          /* Deep Navy */
-        --secondaryLight: #000000;     /* Mid-tone Navy */
-        --headerColor: #000000;        /* Deepest Navy for Headlines */
-        --bodyTextColor: #000307;      /* Slate Gray for body text */
-        --bodyTextColorWhite: #f0f5f9; /* Clean Off-white */
+        --primary: #DC2626;            /* DEL Red - For buttons & highlights */
+        --primaryLight: #EF4444;       /* Lighter Red */
+        --secondary: #0A0A0A;          /* Deep Abyss */
+        --secondaryLight: #171717;     /* Surface Dark */
+        --headerColor: #0A0A0A;        /* Deepest Navy for Headlines (Light Mode) */
+        --bodyTextColor: #262626;      /* Slate Gray for body text (Light Mode) */
+        --bodyTextColorWhite: #FFFFFF; /* Clean Off-white */
 
-        /* Dark Mode Styles - The "Abyss" Palette */
-        --dark: #000000;               /* Deep Abyss */
-        --medium: #000000;              /* Deep Sea Surface */
-        --accent: #42E9FF;              /* Oceanic Accent */
+        /* Dark Mode Styles - The "DEL" Palette */
+        --dark: #0A0A0A;               /* Deep Abyss */
+        --medium: #171717;             /* Surface Box */
+        --accent: #DC2626;             /* DEL Red Accent */
 
         /* 13px - 16px */
         --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
@@ -34,7 +33,7 @@
         /* 60px - 100px top and bottom */
         --sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
 
-        --headerFont: "Montserrat", Arial, sans-serif;
+        --headerFont: "Space Grotesk", Arial, sans-serif;
         --bodyFont: "Inter", Arial, sans-serif;
     }
 
@@ -79,11 +78,13 @@
 		margin: 0 0 1rem 0;
 		color: var(--headerColor);
 		position: relative;
+        text-transform: uppercase;
+        letter-spacing: -0.5px;
 	}
 
 	.cs-text {
 		font-size: var(--bodyFontSize);
-		line-height: 1.5em;
+		line-height: 1.7em;
 		text-align: inherit;
 		width: 100%;
 		max-width: 40.625rem;
@@ -103,7 +104,7 @@
 		opacity: 0;
 	}
 
-	// Buttons - can be replaced using CodeStitch's "Button" Stitches. Make sure to clear the default .cs-button-solid/outline styles from any new stitches you place.
+	// Buttons - Corporate and sleek
 	.cs-button-solid {
 		z-index: 1;
 		position: relative;
@@ -115,7 +116,7 @@
 		text-transform: uppercase;
 		font-size: calc(16 / 16 * 1rem);
 		line-height: calc(16 / 16 * 1em);
-		font-weight: bold;
+		font-weight: 700;
 		border-radius: calc(4 / 16 * 1rem);
 		overflow: hidden;
 
@@ -141,7 +142,7 @@
 			content: "";
 			opacity: 1;
 			display: block;
-			background-color: #000;
+			background-color: var(--secondary);
 			height: 100%;
 
 			//Transition properties
@@ -160,11 +161,12 @@
 		text-transform: uppercase;
 		font-size: calc(16 / 16 * 1rem);
 		line-height: calc(16 / 16 * 1em);
-		font-weight: bold;
-		border: 2px solid #000;
+		font-weight: 700;
+		border: 2px solid var(--secondary);
+        border-radius: calc(4 / 16 * 1rem);
 
 		// Transition Properties
-		color: #000;
+		color: var(--secondary);
 		transition: color 0.3s;
 		transition-delay: 0.1s;
 		text-align: center;
@@ -185,7 +187,7 @@
 			content: "";
 			opacity: 1;
 			display: block;
-			background-color: #000;
+			background-color: var(--secondary);
 			height: 100%;
 
 			//Transition properties
@@ -226,6 +228,10 @@
 		.cs-button-outline {
 			border-color: #fff;
 			color: #fff;
+
+            &:before {
+                background-color: var(--primary);
+            }
 		}
 	}
 }
@@ -293,37 +299,6 @@
 	}
 }
 
-/* Fonts */
-@media only screen and (min-width: 0px) {
-	// Grab your fonts to locally host from https://gwfh.mranftl.com/fonts
-	/* roboto-regular - latin */
-	@font-face {
-		font-style: normal;
-		font-family: "Roboto";
-		font-weight: 400;
-		font-display: swap;
-		src: local(""), url("/assets/fonts/roboto-v29-latin-regular.woff2") format("woff2"), /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/roboto-v29-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-	}
-
-	/* roboto-700 - latin */
-	@font-face {
-		font-style: normal;
-		font-family: "Roboto";
-		font-weight: 700;
-		font-display: swap;
-		src: local(""), url("/assets/fonts/roboto-v29-latin-700.woff2") format("woff2"), /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/roboto-v29-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-	}
-
-	/* roboto-900 - latin */
-	@font-face {
-		font-style: normal;
-		font-family: "Roboto";
-		font-weight: 900;
-		font-display: swap;
-		src: local(""), url("/assets/fonts/roboto-v29-latin-900.woff2") format("woff2"), /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/roboto-v29-latin-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-	}
-}
-
 /*-- -------------------------- -->
 <---      Dark Mode Toggle      -->
 <--- -------------------------- -*/
@@ -374,8 +349,6 @@
 			z-index: 2;
 			// Transition properties
 			transition: transform 0.3s, opacity 0.3s;
-
-			// fill: yellow; --> uncomment to change the color of the moon if needed
 		}
 
 		.cs-sun {
@@ -623,15 +596,6 @@
 			&:nth-of-type(6) {
 				transition-delay: 0.3s;
 			}
-			&:nth-of-type(7) {
-				transition-delay: 0.35s;
-			}
-			&:nth-of-type(8) {
-				transition-delay: 0.4s;
-			}
-			&:nth-of-type(9) {
-				transition-delay: 0.45s;
-			}
 		}
 
 		.cs-li-link {
@@ -837,8 +801,6 @@
 			opacity: 0;
 			border-bottom: 5px solid var(--primary);
 			visibility: hidden;
-			/* if you have 8 or more links in your dropdown nav, uncomment the columns property to make the list into 2 even columns. Change it to 3 or 4 if you need extra columns. Then remove the transition delays on the cs-drop-li so they don't have weird scattered animations */
-			// columns: 2;
 			position: absolute;
 			top: 100%;
 			z-index: -100;
@@ -860,45 +822,9 @@
 			transform: translateY(-0.625rem);
 			transition: opacity 0.6s, transform 0.6s;
 
-			&:nth-of-type(1) {
-				transition-delay: 0.05s;
-			}
-			&:nth-of-type(2) {
-				transition-delay: 0.1s;
-			}
-			&:nth-of-type(3) {
-				transition-delay: 0.15s;
-			}
-			&:nth-of-type(4) {
-				transition-delay: 0.2s;
-			}
-			&:nth-of-type(5) {
-				transition-delay: 0.25s;
-			}
-			&:nth-of-type(6) {
-				transition-delay: 0.3s;
-			}
-			&:nth-of-type(7) {
-				transition-delay: 0.35s;
-			}
-			&:nth-of-type(8) {
-				transition-delay: 0.4s;
-			}
-			&:nth-of-type(9) {
-				transition-delay: 0.45s;
-			}
-			&:nth-of-type(10) {
-				transition-delay: 0.5s;
-			}
-			&:nth-of-type(11) {
-				transition-delay: 0.55s;
-			}
-			&:nth-of-type(12) {
-				transition-delay: 0.6s;
-			}
-			&:nth-of-type(13) {
-				transition-delay: 0.65s;
-			}
+			&:nth-of-type(1) { transition-delay: 0.05s; }
+			&:nth-of-type(2) { transition-delay: 0.1s; }
+			&:nth-of-type(3) { transition-delay: 0.15s; }
 		}
 
 		.cs-li-link {
@@ -947,7 +873,7 @@
 					background-color: var(--medium);
 
 					&:hover {
-						background-color: var(--light);
+						background-color: var(--secondaryLight);
 					}
 				}
 			}
@@ -1037,6 +963,8 @@
 			color: var(--bodyTextColor);
 			display: block;
 			position: relative;
+			font-weight: 600;
+
 			&:hover {
 				&:before {
 					width: 100%;
@@ -1071,6 +999,7 @@
 	body.dark-mode {
 		#cs-navigation {
 			background-color: var(--dark);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
 			.cs-logo {
 				/* makes it turn white */
@@ -1083,387 +1012,109 @@
 
 			.cs-li-link {
 				&:before {
-					background-color: var(--primaryLight);
+					background-color: var(--primary);
 				}
 			}
 		}
 	}
 }
 
-/*-- -------------------------- -->
-<---          Banner            -->
-<--- -------------------------- -*/
+/* ============================================ */
+/* CENTERED FOOTER                              */
+/* ============================================ */
 
-/* Mobile - 360px */
-@media only screen and (min-width: 0px) {
-	#banner-310 {
-		/* 144px - 252px */
-		padding-top: clamp(9rem, 25vw, 15.75rem);
-		/* 80px - 140px */
-		padding-bottom: clamp(5rem, 13vw, 8.75rem);
-		position: relative;
-		z-index: 1;
+#cs-footer-centered {
+    background-color: var(--del-abyss);
+    padding: 4rem 1.5rem 2rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+    
+    .footer-logo {
+        width: 160px;
+        height: auto;
+    }
 
-		.cs-container {
-			width: 100%;
-			max-width: calc(1280 / 16 * 1rem);
-			margin: auto;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-		}
+    .footer-socials {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
-		.cs-int-title {
-			/* 39px - 49px */
-			font-size: clamp(2.4375rem, 4.5vw, 3.0625rem);
-			font-weight: 900;
-			line-height: 1.2em;
-			text-align: center;
-			max-width: calc(700 / 16 * 1rem);
-			margin: 0 auto calc(12 / 16 * 1rem);
-			color: var(--bodyTextColorWhite);
-			position: relative;
-		}
+    .social-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+        
+        &:hover { 
+            opacity: 0.8; 
+        }
+        
+        &.bg-yt, &.bg-ig, &.bg-tk, &.bg-fb, &.bg-x { 
+            background-color: #282828; 
+        }
 
-		.cs-breadcrumbs {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
+        img {
+            width: 18px;
+            height: 18px;
+            filter: invert(1);
+        }
+    }
 
-		.cs-link {
-			/* 14px - 16px */
-			font-size: clamp(0.875rem, 1.5vw, 1rem);
-			line-height: 1.2em;
-			text-decoration: none;
-			color: var(--bodyTextColorWhite);
-			position: relative;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        max-width: 600px;
+    }
 
-			&:last-of-type {
-				/* remove the chevron on the last list item */
-				&::after {
-					display: none;
-				}
-			}
+    .footer-link {
+        color: var(--del-frost);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: color 0.3s;
 
-			&:after {
-				/* chevron - added as pseudo to make adding and removing them easier */
-				content: "";
-				width: calc(7 / 16 * 1rem);
-				height: calc(12 / 16 * 1rem);
-				margin-left: calc(12 / 16 * 1rem);
-				margin-right: calc(12 / 16 * 1rem);
-				background: url("/assets/svgs/chevron.svg");
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-			}
+        &:hover { 
+            color: var(--del-white); 
+        }
+    }
 
-			&.cs-active {
-				color: var(--primaryLight);
-			}
-		}
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
 
-		.cs-background {
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			display: block;
-			z-index: -1;
+    .copyright {
+        color: #666;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+    }
 
-			&:before {
-				/* black overlay box */
-				content: "";
-				width: 100%;
-				height: 100%;
-				background: #000;
-				opacity: 0.72;
-				position: absolute;
-				display: block;
-				top: 0;
-				left: 0;
-				z-index: 1;
-			}
+    .agency-credit {
+        color: #666;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
 
-			img {
-				position: absolute;
-				top: 0;
-				left: 0;
-				height: 100%;
-				width: 100%;
-				object-fit: cover;
-			}
-		}
-	}
-}
-
-/*-- -------------------------- -->
-<---            CTA             -->
-<--- -------------------------- -*/
-
-/* Mobile - 360px */
-@media only screen and (min-width: 0px) {
-	#cta-51 {
-		padding: var(--sectionPadding);
-		position: relative;
-
-		.cs-container {
-			width: 100%;
-			max-width: calc(1280 / 16 * 1rem);
-			margin: auto;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			/* 48px - 64px */
-			gap: clamp(3rem, 6vw, 4rem);
-		}
-
-		.cs-content {
-			/* set text align to left if content needs to be left aligned */
-			text-align: center;
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			/* centers content horizontally, set to flex-start to left align */
-			align-items: center;
-		}
-
-		.cs-title {
-			color: var(--bodyTextColorWhite);
-		}
-
-		.cs-text {
-			margin-bottom: calc(16 / 16 * 1rem);
-			color: var(--bodyTextColorWhite);
-			opacity: 0.8;
-			&:last-of-type {
-				margin-bottom: calc(32 / 16 * 1rem);
-			}
-		}
-
-		.cs-picture {
-			height: 100%;
-			width: 100%;
-			display: block;
-			position: absolute;
-			z-index: -1;
-			top: 0;
-			left: 0;
-			z-index: -1;
-
-			&:before {
-				/* black color overlay */
-				content: "";
-				position: absolute;
-				display: block;
-				height: 100%;
-				width: 100%;
-				background: #000;
-				opacity: 0.8;
-				top: 0;
-				left: 0;
-				z-index: 1;
-			}
-
-			img {
-				position: absolute;
-				top: 0;
-				left: 0;
-				height: 100%;
-				width: 100%;
-				object-fit: cover;
-			}
-		}
-	}
-}
-
-/*-- -------------------------- -->
-<---          Footer            -->
-<--- -------------------------- -*/
-
-/* Mobile - 360px */
-@media only screen and (min-width: 0px) {
-	#cs-footer-275 {
-		padding: var(--sectionPadding);
-		background-color: #1a1a1a;
-		padding-bottom: 1.5rem; /* Reduce this value until it looks right */
-
-		.cs-container {
-			width: 100%;
-			/* reset on tablet */
-			max-width: calc(550 / 16 * 1rem);
-			margin: auto;
-			display: flex;
-			justify-content: flex-start;
-			align-items: flex-start;
-			flex-wrap: wrap;
-			column-gap: calc(88 / 16 * 1rem);
-			row-gap: calc(32 / 16 * 1rem);
-		}
-
-		.cs-logo-group {
-			/* takes up all the space, lets the other ul's wrap below it */
-			width: 100%;
-			position: relative;
-		}
-
-		.cs-logo {
-			/* 210px - 240px */
-			width: clamp(13.125rem, 8vw, 15rem);
-			height: auto;
-			display: block;
-			/* 28px - 44px */
-			margin-bottom: clamp(1.75rem, 4.17vw, 2.75rem);
-		}
-
-		.cs-logo-img {
-			width: 100%;
-			height: auto;
-
-			&.dark {
-				display: none;
-			}
-		}
-
-		.cs-text {
-			color: var(--bodyTextColorWhite);
-			margin-bottom: calc(16 / 16 * 1rem);
-		}
-
-		.cs-social {
-			display: inline-flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			gap: calc(12 / 16 * 1rem);
-			position: absolute;
-			top: 0;
-			right: 0;
-		}
-
-		.cs-social-link {
-			width: calc(24 / 16 * 1rem);
-			height: calc(24 / 16 * 1rem);
-			background-color: #4e4b66;
-			border-radius: 50%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			position: relative;
-			z-index: 1;
-			transition: transform 0.3s, background-color 0.3s;
-
-			&:hover {
-				background-color: #1a1a1a;
-				transform: translateY(-0.1875rem);
-			}
-		}
-
-		.cs-social-img {
-			height: calc(13 / 16 * 1rem);
-			width: auto;
-			display: block;
-		}
-
-		/* Navigation Links */
-		.cs-nav {
-			padding: 0;
-			margin: 0;
-		}
-
-		.cs-nav-li {
-			list-style: none;
-			margin-bottom: calc(16 / 16 * 1rem);
-			&:last-of-type {
-				margin-bottom: 0;
-			}
-		}
-
-		.cs-header {
-			font-size: calc(16 / 16 * 1rem);
-			line-height: 1.5em;
-			font-weight: 700;
-			color: var(--bodyTextColorWhite);
-			position: relative;
-
-			&:after {
-				content: "";
-				width: calc(32 / 16 * 1rem);
-				height: calc(4 / 16 * 1rem);
-				margin: calc(16 / 16 * 1rem) auto calc(24 / 16 * 1rem) 0;
-				background: var(--primary);
-				opacity: 1;
-				position: relative;
-				display: block;
-			}
-		}
-
-		.cs-nav-link {
-			font-size: calc(16 / 16 * 1rem);
-			text-decoration: none;
-			line-height: 1.5em;
-			color: var(--bodyTextColorWhite);
-			position: relative;
-
-			&:before {
-				/* underline */
-				content: "";
-				width: 0%;
-				height: calc(2 / 16 * 1rem);
-				background: var(--bodyTextColorWhite);
-				opacity: 1;
-				position: absolute;
-				display: block;
-				bottom: calc(-2 / 16 * 1rem);
-				left: 0;
-				transition: width 0.3s;
-			}
-
-			&:hover {
-				&:before {
-					width: 100%;
-				}
-			}
-		}
-
-		/* Contact Links */
-		.cs-contact {
-			margin: 0;
-			padding: 0;
-			width: 35%;
-		}
-
-		.cs-contact-li {
-			list-style: none;
-			margin-bottom: calc(0 / 16 * 1rem);
-			&:last-of-type {
-				margin-bottom: 0;
-			}
-		}
-
-		.cs-contact-link {
-			font-size: calc(16 / 16 * 1rem);
-			text-decoration: none;
-			line-height: 1.5em;
-			text-align: left;
-			color: var(--bodyTextColorWhite);
-			display: inline-block;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-
-		.cs-address {
-			font-size: calc(16 / 16 * 1rem);
-			margin-bottom: calc(20 / 16 * 1rem);
-		}
-	}
+        a {
+            color: var(--del-white);
+            text-decoration: none;
+            font-weight: 700;
+        }
+    }
 }
 
 /* Tablet - 768px */
@@ -1490,13 +1141,11 @@
 @media only screen and (min-width: 64rem) {
 	#cs-footer-275 {
 		.cs-container {
-			/* pushes all flex children to the top */
 			align-items: flex-start;
 			justify-content: flex-end;
 		}
 
 		.cs-logo-group {
-			/* pushes everything to the right of it as far as possible in a flexbox */
 			margin-right: auto;
 			width: auto;
 			max-width: calc(305 / 16 * 1rem);
@@ -1518,42 +1167,39 @@
 		}
 	}
 }
+
 /* ============================================ */
 /* Animated Logo Switching                      */
 /* ============================================ */
 
-/* 1. Turn the logo link into a grid to stack the images perfectly */
 .cs-logo {
     display: grid !important;
     align-items: center;
 }
 
-/* 2. Place both images in the exact same grid spot and set the animation speed */
 .cs-logo img {
     grid-column: 1;
     grid-row: 1;
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* 3. Default State (Light Mode) */
 .cs-logo-dark {
     opacity: 0;
-    transform: scale(0.8); /* Shrinks it slightly while hidden */
-    pointer-events: none; /* Prevents invisible logo from blocking clicks */
+    transform: scale(0.8);
+    pointer-events: none;
 }
 .cs-logo-light {
     opacity: 1;
     transform: scale(1);
 }
 
-/* 4. Active State (Dark Mode) */
 body.dark-mode .cs-logo-dark {
     opacity: 1;
-    transform: scale(1); /* Pops back to full size */
+    transform: scale(1);
     pointer-events: auto;
 }
 body.dark-mode .cs-logo-light {
     opacity: 0;
-    transform: scale(0.8); /* Shrinks away */
+    transform: scale(0.8);
     pointer-events: none;
 }

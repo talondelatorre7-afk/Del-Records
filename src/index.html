@@ -1,6 +1,6 @@
 ---
-title: "SUMMIT RECORDS | Underground & Experimental Pop"
-description: "An exclusive distribution collective for non-mainstream artists. Keep 90% of your royalties with lifetime distribution. Home to HVZE."
+title: "DEL Records | Regional Mexican Music Record Label"
+description: "From Los Angeles, California to the World, Pioneering the Musica Mexicana movement with Billions of Streams and Views."
 permalink: "/"
 tags: "sitemap"
 ---
@@ -21,212 +21,376 @@ tags: "sitemap"
 
     <style>
         /* ============================================ */
-        /* SUMMIT RECORDS MASTER STYLES                 */
+        /* DEL RECORDS CORPORATE STYLES                 */
         /* ============================================ */
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700;900&display=swap');
 
         :root {
-            --summit-abyss: #050505; 
-            --summit-cyan: #00E0FF;
-            --summit-frost: #B8EFFF;
-            --summit-white: #FFFFFF;
+            --del-abyss: #0A0A0A; 
+            --del-red: #DC2626; 
+            --del-surface: #121212; 
+            --del-surface-light: #1A1A1A;
+            --del-frost: #A3A3A3;
+            --del-white: #FFFFFF;
+            --spotify-green: #1DB954;
         }
 
         /* Typography */
-        .summit-heading {
-            font-family: 'Space Grotesk', sans-serif !important;
+        .del-heading {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--summit-white);
+            letter-spacing: -1px;
+            color: var(--del-white);
             margin: 0;
             word-wrap: break-word; 
         }
         
-        .summit-body {
-            font-family: 'JetBrains Mono', monospace !important;
-            color: var(--summit-frost);
+        .del-body {
+            font-family: 'Inter', sans-serif !important;
+            color: var(--del-frost);
             line-height: 1.6;
         }
 
         /* UI Elements & Buttons */
-        .summit-btn-group {
+        .del-btn-group {
             display: flex;
             gap: 1rem;
-            flex-wrap: wrap;
+            flex-direction: column; 
             width: 100%;
+            margin-top: 2.5rem;
         }
 
-        .summit-btn {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
+        .del-btn {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
             font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 1.25rem 3rem;
+            padding: 1.25rem 2rem;
             text-decoration: none;
-            border-radius: 0; 
+            border-radius: 6px; 
             transition: all 0.3s ease;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            width: 100%;
         }
 
-        .summit-btn-primary {
-            background-color: var(--summit-cyan);
-            color: var(--summit-abyss);
-            border: 2px solid var(--summit-cyan);
+        .del-btn-primary {
+            background-color: var(--del-white);
+            color: var(--del-abyss);
+            border: 1px solid var(--del-white);
         }
 
-        .summit-btn-primary:hover {
+        .del-btn-primary:hover {
+            background-color: #E5E5E5;
+            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+        }
+
+        .del-btn-secondary {
             background-color: transparent;
-            color: var(--summit-cyan);
-            box-shadow: 0 0 15px rgba(0, 224, 255, 0.4);
-        }
-
-        .summit-btn-secondary {
-            background-color: transparent;
-            color: var(--summit-white);
+            color: var(--del-white);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .summit-btn-secondary:hover {
-            border-color: var(--summit-cyan);
-            color: var(--summit-cyan);
+        .del-btn-secondary:hover {
+            border-color: var(--del-white);
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .del-btn-red {
+            background-color: #EF4444; 
+            color: var(--del-white);
+            border: none;
+            padding: 1.25rem 2rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .del-btn-red:hover {
+            background-color: #DC2626;
+            transform: translateY(-2px);
+        }
+
+        /* Utility Layouts */
+        .del-section {
+            background-color: var(--del-abyss) !important;
+            padding: clamp(4rem, 8vw, 6rem) 1.5rem;
         }
 
         /* ============================================ */
-        /* MOBILE-FIRST HERO SETUP (Tight & Compact)    */
+        /* HERO SECTION                                 */
         /* ============================================ */
-        #summit-hero {
+        #del-hero {
             position: relative;
-            padding: 8rem 0 5rem 0; /* Tight spacing for phones */
+            /* Extra top padding for navigation bar clearance */
+            padding: 12rem 1.5rem 6rem 1.5rem;
             z-index: 1;
             display: flex;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 224, 255, 0.2);
+            align-items: center; 
+            background-color: var(--del-abyss);
+            overflow: hidden; /* Contains the background animations */
+        }
+
+        /* Cinematic Film Grain Overlay */
+        .hero-noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Ambient Animated Glows */
+        .hero-bg-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            animation: floatGlow 12s infinite ease-in-out alternate;
+        }
+
+        .glow-red {
+            background: rgba(220, 38, 38, 0.25);
+            width: 45vw;
+            height: 45vw;
+            top: -10%;
+            right: -5%;
+        }
+
+        .glow-dark {
+            background: rgba(40, 40, 40, 0.4);
+            width: 50vw;
+            height: 50vw;
+            bottom: -20%;
+            left: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-40px, 30px) scale(1.1); }
         }
 
         .hero-title-text {
-            font-size: 3rem !important; /* Fits perfectly on iPhone */
+            font-size: clamp(3.5rem, 12vw, 6.5rem) !important;
             line-height: 1 !important;
             margin-bottom: 1.5rem !important;
+            text-align: left;
         }
 
-        /* Hero Background */
-        #summit-hero .cs-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
+        .hero-subtext {
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            color: #CCCCCC; /* Softer gray/white to match screenshot */
+            max-width: 700px;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        /* ============================================ */
+        /* ABOUT SECTION                                */
+        /* ============================================ */
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* ============================================ */
+        /* ARTIST CARDS                                 */
+        /* ============================================ */
+        .roster-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns on mobile per standard app view, or 1fr if very small */
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        @media (max-width: 400px) {
+            .roster-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (min-width: 768px) {
+            .roster-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        }
+
+        .artist-card {
+            background-color: var(--del-surface);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(220, 38, 38, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .artist-img-wrapper {
             width: 100%;
-            z-index: -1;
-            background-color: var(--summit-abyss);
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background-color: #111;
         }
 
-        #summit-hero .cs-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(5, 5, 5, 0.7) 0%, rgba(5, 5, 5, 1) 100%);
-            z-index: 1;
-        }
-
-        #summit-hero .cs-background img {
+        .artist-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(80%) contrast(150%) brightness(0.6);
+            transition: transform 0.5s ease;
+        }
+
+        .artist-card:hover .artist-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .artist-info {
+            padding: 1.25rem 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .artist-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--del-white);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .spotify-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--del-frost);
+        }
+
+        .spotify-icon {
+            width: 12px;
+            height: 12px;
+            fill: var(--spotify-green);
+        }
+
+        .featured-pill {
+            margin-top: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 50px;
+            color: var(--del-red);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.65rem;
+            background-color: rgba(220, 38, 38, 0.05);
         }
 
         /* ============================================ */
-        /* DESKTOP HERO OVERRIDES (Massive & Cinematic) */
+        /* DIVISIONS (INFRASTRUCTURE)                   */
         /* ============================================ */
-        @media (min-width: 1024px) {
-            #summit-hero {
-                padding: 14rem 0 10rem 0 !important;
-                min-height: 95vh !important;
-            }
-            .hero-title-text {
-                font-size: 6.5rem !important;
-                line-height: 0.9 !important;
-                margin-bottom: 2rem !important;
-            }
-        }
-
-        /* Continuous Scrolling Marquee */
-        .marquee-wrapper {
-            background-color: var(--summit-cyan);
-            padding: 1rem 0;
-            overflow: hidden;
-            display: flex;
-            white-space: nowrap;
-            border-bottom: 1px solid var(--summit-abyss);
-        }
-        
-        .marquee-content {
-            display: flex;
-            animation: marquee 20s linear infinite;
-        }
-        
-        .marquee-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: var(--summit-abyss);
-            text-transform: uppercase;
-            padding: 0 2rem;
-            letter-spacing: 2px;
-        }
-        
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Layout Grids */
-        .deal-grid {
+        .division-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: clamp(1.5rem, 4vw, 2rem);
-            margin-top: clamp(2rem, 5vw, 4rem);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .deal-card {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2rem);
-            background: rgba(255, 255, 255, 0.02);
+        .division-card {
+            background-color: var(--del-surface);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: left;
             transition: border-color 0.3s ease;
         }
-
-        .deal-card:hover {
-            border-color: var(--summit-cyan);
+        
+        .division-card:hover {
+            border-color: rgba(255,255,255,0.1);
         }
 
-        .deal-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
-            color: rgba(0, 224, 255, 0.2);
-            line-height: 1;
+        .division-card h3 {
+            font-family: 'Inter', sans-serif;
+            color: var(--del-white);
+            font-size: 1.25rem;
             margin-bottom: 1rem;
-            display: block;
         }
 
-        /* Utility to force sections black with dynamic mobile padding */
-        .summit-section {
-            background-color: var(--summit-abyss) !important;
-            padding: clamp(3rem, 8vw, 6rem) 0;
+        /* ============================================ */
+        /* LATEST VIDEOS                                */
+        /* ============================================ */
+        .video-container {
+            background-color: var(--del-surface-light);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Mobile Fixes */
-        @media (max-width: 768px) {
-            .summit-btn {
-                width: 100%; 
-            }
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .youtube-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 40px;
+            background-color: #FF0000;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .youtube-play::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 14px solid white;
+            margin-left: 4px;
+        }
+
+        /* ============================================ */
+        /* BUSINESS INQUIRIES                           */
+        /* ============================================ */
+        .business-box {
+            background-color: var(--del-surface);
+            border-radius: 16px;
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.03);
         }
     </style>
 {% endblock %}
@@ -236,208 +400,427 @@ tags: "sitemap"
     <!-- ============================================ -->
     <!--                   HERO                       -->
     <!-- ============================================ -->
-    <section id="summit-hero">
-        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; width: 100%;">
-            <span class="summit-body" style="color: var(--summit-cyan); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 1rem;">
-                The High Altitude Standard
-            </span>
-            
-            <!-- This text uses the custom class to jump from 3rem on mobile to 6.5rem on desktop -->
-            <h1 class="summit-heading hero-title-text">
-                ELEVATING<br>
-                <span style="color: transparent; -webkit-text-stroke: 2px var(--summit-white);">THE UNDERGROUND.</span>
+    <section id="del-hero">
+        <!-- Cinematic Background Effects -->
+        <div class="hero-noise-overlay"></div>
+        <div class="hero-bg-glow glow-red"></div>
+        <div class="hero-bg-glow glow-dark"></div>
+
+        <div style="max-width: 1400px; margin: 0 auto; width: 100%; position: relative; z-index: 2;">
+            <h1 class="del-heading hero-title-text" style="line-height: 0.95 !important;">
+                DOMINATING<br>
+                <span style="color: transparent; -webkit-text-stroke: 2px var(--del-white); opacity: 0.9;">MUSICA</span><br>
+                <span style="color: var(--del-red); text-shadow: 0 0 20px rgba(220, 38, 38, 0.4);">MEXICANA</span>
             </h1>
             
-            <p class="summit-body" style="font-size: 1.1rem; max-width: 550px; margin-bottom: clamp(2rem, 5vw, 3rem); opacity: 0.8;">
-                We don't chase viral trends. We build sanctuaries for experimental audio. Keep your masters, get lifetime global distribution, and join an uncompromising roster.
+            <div style="width: 60px; height: 4px; background-color: var(--del-red); margin: 2rem 0 1.5rem 0; box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);"></div>
+
+            <p class="del-body hero-subtext">
+                From Los Angeles, California to the World, Pioneering the Musica Mexicana movement with Billions of Streams and Views and a Roster of the Genre's Most Influential Artists.
             </p>
             
-            <div class="summit-btn-group">
-                <a href="/submit/" class="summit-btn summit-btn-primary">Submit Demo</a>
-                <a href="/roster/" class="summit-btn summit-btn-secondary">View Roster</a>
+            <div class="del-btn-group" style="max-width: 400px;">
+                <a href="#artists" class="del-btn del-btn-primary">Explore Artists</a>
+                <a href="#music" class="del-btn del-btn-secondary">Listen Now</a>
             </div>
-        </div>
-
-        <div class="cs-background">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1920&auto=format&fit=crop" alt="Dark mountain peaks" loading="eager" decoding="async">
         </div>
     </section>
 
     <!-- ============================================ -->
-    <!--                  MARQUEE                     -->
+    <!--                 ABOUT US                     -->
     <!-- ============================================ -->
-    <div class="marquee-wrapper">
-        <div class="marquee-content">
-            <span class="marquee-text">/// NO MAINSTREAM /// EXPERIMENTAL POP ///</span>
-            <span class="marquee-text">KEEP YOUR MASTERS /// LIFETIME DISTRIBUTION</span>
-            <span class="marquee-text">/// NO MAINSTREAM /// EXPERIMENTAL POP ///</span>
-            <span class="marquee-text">KEEP YOUR MASTERS /// LIFETIME DISTRIBUTION</span>
-            <span class="marquee-text">/// NO MAINSTREAM /// EXPERIMENTAL POP ///</span>
-            <span class="marquee-text">KEEP YOUR MASTERS /// LIFETIME DISTRIBUTION</span>
-        </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!--                 MANIFESTO                    -->
-    <!-- ============================================ -->
-    <section class="summit-section" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-        <div class="cs-container" style="max-width: 900px; margin: 0 auto; padding: 0 1rem; text-align: center;">
-            <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: clamp(1.5rem, 4vw, 2rem);">WE BUILD ARTIFACTS, NOT CONTENT.</h2>
-            <p class="summit-body" style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 1.5rem;">
-                The industry is obsessed with algorithms, 15-second hooks, and rapid-fire releases. Summit Records was engineered as a counter-culture to the mainstream machine. 
+    <section class="del-section" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="about-container">
+            <img src="/assets/images/deep1.png" alt="DEL Records" style="max-width: 120px; margin-bottom: 2rem; opacity: 1;">
+            <h2 class="del-heading" style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.5rem; text-transform: none;">The Empire</h2>
+            <p class="del-body" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                Founded in 2009 in Los Angeles, California, DEL Records has emerged as one of the most influential independent record labels in Musica Mexicana and Regional Mexican Music. 
             </p>
-            <p class="summit-body" style="font-size: 1.1rem; opacity: 0.8;">
-                We are looking for architects of sound. If your audio pushes boundaries, defies traditional genres, and refuses to conform, we provide the infrastructure to distribute it globally without demanding ownership of your art.
+            <p class="del-body" style="font-size: 1.1rem;">
+                We have been at the forefront of the genre's evolution, championing the movement that's revolutionized Latin music globally. With billions of streams across all platforms and a dedicated global fanbase, DEL Records continues to push boundaries and shape the future of the culture.
             </p>
         </div>
     </section>
 
     <!-- ============================================ -->
-    <!--                 THE DEAL                     -->
+    <!--                OUR ARTISTS                   -->
     <!-- ============================================ -->
-    <section class="summit-section">
-        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-                <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 1rem;">THE BLUEPRINT</h2>
-                <p class="summit-body">We dismantled the traditional record label contract. Our infrastructure is built for artists who demand creative control and fair splits.</p>
-            </div>
-
-            <div class="deal-grid">
-                <div class="deal-card">
-                    <span class="deal-num">01</span>
-                    <h3 class="summit-heading" style="font-size: 1.5rem; margin-bottom: 1rem;">10% Split</h3>
-                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.7;">We take a lean 10% of generated revenue. The other 90% goes straight to you. No hidden fees, no recoupment traps.</p>
-                </div>
-                <div class="deal-card">
-                    <span class="deal-num">02</span>
-                    <h3 class="summit-heading" style="font-size: 1.5rem; margin-bottom: 1rem;">Master Ownership</h3>
-                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.7;">You made it, you own it. You retain 100% ownership of your masters forever. We are your distributor, not your landlord.</p>
-                </div>
-                <div class="deal-card">
-                    <span class="deal-num">03</span>
-                    <h3 class="summit-heading" style="font-size: 1.5rem; margin-bottom: 1rem;">Lifetime Push</h3>
-                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.7;">Once you hit the Summit, you stay on. Global distribution across all major DSPs for the lifetime of the track.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!--               HOW IT WORKS                   -->
-    <!-- ============================================ -->
-    <section class="summit-section" style="background-color: #080808 !important; border-top: 1px solid rgba(0,224,255,0.1);">
-        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-            <div style="margin-bottom: clamp(2rem, 5vw, 3rem);">
-                <span class="summit-body" style="color: var(--summit-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">The Process</span>
-                <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 2.5rem);">HOW TO ASCEND</h2>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: clamp(2rem, 5vw, 3rem);">
-                <div style="border-left: 2px solid var(--summit-cyan); padding-left: 1.5rem;">
-                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.5rem;">1. SUBMIT AUDIO</h3>
-                    <p class="summit-body" style="font-size: 0.9rem; opacity: 0.8;">Send us your best unreleased tracks via our portal. We review every submission manually.</p>
-                </div>
-                <div style="border-left: 2px solid var(--summit-cyan); padding-left: 1.5rem;">
-                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.5rem;">2. CURATION</h3>
-                    <p class="summit-body" style="font-size: 0.9rem; opacity: 0.8;">If your sound aligns with the Summit ethos, we send over a straightforward, transparent distribution agreement.</p>
-                </div>
-                <div style="border-left: 2px solid var(--summit-cyan); padding-left: 1.5rem;">
-                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.5rem;">3. GLOBAL PUSH</h3>
-                    <p class="summit-body" style="font-size: 0.9rem; opacity: 0.8;">We handle the metadata, DSP delivery, and technical backend. You focus on making the next record.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!--              ANCHOR ARTIST                   -->
-    <!-- ============================================ -->
-    <section class="summit-section" style="border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
-        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; flex-wrap: wrap; gap: clamp(2rem, 6vw, 4rem); align-items: center;">
-            
-            <div style="flex: 1; min-width: 300px; position: relative;">
-                <div style="position: absolute; top: -15px; left: -15px; width: 100px; height: 100px; border-top: 2px solid var(--summit-cyan); border-left: 2px solid var(--summit-cyan); z-index: 0;"></div>
-                <img src="https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=800&auto=format&fit=crop" alt="HVZE Profile" style="width: 100%; height: auto; position: relative; z-index: 1; filter: grayscale(50%);">
-            </div>
-
-            <div style="flex: 1; min-width: 300px;">
-                <span class="summit-body" style="color: var(--summit-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 1rem;">Anchor Spotlight</span>
-                <h2 class="summit-heading" style="font-size: clamp(2.5rem, 6vw, 3rem); margin-bottom: 1.5rem;">HVZE</h2>
-                <p class="summit-body" style="margin-bottom: 2rem;">
-                    Pioneering the Christian Experimental Pop space. HVZE represents the core of the Summit ethos—raw, unapologetic audio that refuses to fit into a commercial box.
+    <section id="artists" class="del-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 class="del-heading" style="font-size: clamp(2.5rem, 8vw, 3.5rem); margin-bottom: 1rem; text-transform: none;">Our <span style="color: var(--del-red)">Artists</span></h2>
+                <p class="del-body" style="max-width: 600px; margin: 0 auto; font-size: 1rem;">
+                    Meet the talented artists defining the sound of Musica Mexicana / Regional Mexican Music. Each artist brings their unique style to the DEL Records family.
                 </p>
-                <div style="border-left: 2px solid var(--summit-cyan); padding-left: 1.5rem; margin-bottom: 2.5rem;">
-                    <p class="summit-body" style="color: var(--summit-white); font-style: italic; margin-bottom: 0.5rem;">
-                        "We aren't building a commercial factory. We're building a high-altitude sanctuary for artists who break the mold."
-                    </p>
-                    <span class="summit-heading" style="font-size: 0.9rem; color: var(--summit-cyan);">Talon De La Torre / Label Architect</span>
-                </div>
-                <a href="/hvze/" class="summit-btn summit-btn-secondary">Explore HVZE</a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!--             RELEASES GRID                    -->
-    <!-- ============================================ -->
-    <section class="summit-section">
-        <div class="cs-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: clamp(2rem, 5vw, 3rem); flex-wrap: wrap; gap: 1rem;">
-                <div>
-                    <span class="summit-body" style="color: var(--summit-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Database</span>
-                    <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 2.5rem);">LATEST RELEASES</h2>
-                </div>
-                <!-- Links directly to HVZE Spotify -->
-                <a href="https://open.spotify.com/artist/0Qb2S5cOWhtWhNoncpS2Li?si=zMiDhfuOTf-H7k_HI4R_zQ" target="_blank" rel="noopener" class="summit-btn summit-btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;">View Full Database</a>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                <!-- Release 1 -->
-                <a href="https://open.spotify.com/track/2TyFiVtJqPHdnyEcQ7jMZY?si=4a702b4f05d947e6" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 1/1; overflow: hidden; background: #111; display: block;">
-                    <img src="https://i.scdn.co/image/ab67616d0000e1a3cfcbbf0a08f2022e4ed26950" alt="HVZE Latest Release 1" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
-                </a>
-                <!-- Release 2 -->
-                <a href="https://open.spotify.com/track/6qJtAO1XXxtFMBnQmfIVeL?si=8e02013e6a634ca3" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 1/1; overflow: hidden; background: #111; display: block;">
-                    <img src="https://i1.sndcdn.com/artworks-bxIDtgvn8fdKW4WV-YaVlTw-t500x500.png" alt="HVZE Latest Release 2" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
-                </a>
-                <!-- Release 3 -->
-                <a href="https://open.spotify.com/track/1FDaQ0a5rSzUg6td9LwrSA?si=33e578f2f605415e" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 1/1; overflow: hidden; background: #111; display: block;">
-                    <img src="https://i1.sndcdn.com/artworks-Hb7YVMWFDwv2RJtF-HOJB4Q-t500x500.png" alt="HVZE Latest Release 3" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
-                </a>
-                <!-- Release 4 -->
-                <a href="https://open.spotify.com/track/75tXPnfUnokGVnwG1cbYBP?si=6721feda386d40e8" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 1/1; overflow: hidden; background: #111; display: block;">
-                    <img src="https://i1.sndcdn.com/artworks-iD3ipgXQ0dMqX8dV-d2e2gg-t500x500.png" alt="HVZE Latest Release 4" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!--                     FAQ                      -->
-    <!-- ============================================ -->
-    <section class="summit-section" style="border-top: 1px solid rgba(255,255,255,0.05);">
-        <div class="cs-container" style="max-width: 900px; margin: 0 auto; padding: 0 1rem;">
-            <div style="text-align: center; margin-bottom: clamp(2rem, 6vw, 4rem);">
-                <h2 class="summit-heading" style="font-size: clamp(2rem, 5vw, 2.5rem);">TRANSPARENCY (FAQ)</h2>
             </div>
             
-            <div style="display: grid; gap: clamp(1rem, 4vw, 2rem);">
-                <div style="border: 1px solid rgba(255,255,255,0.1); padding: clamp(1.5rem, 4vw, 2rem); background: rgba(255,255,255,0.02);">
-                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--summit-cyan);">DO I REALLY KEEP 90%?</h3>
-                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.8;">Yes. You keep 90% of all royalties generated from the tracks distributed through us. The 10% covers the lifetime backend management and placement of your audio.</p>
+            <div class="roster-grid">
+                <!-- 1. Lenin Ramirez -->
+                <a href="https://open.spotify.com/artist/3hTffafUYLLgO4yuPAxb5U?si=fMiJ452_RN2PtIHEHI1-9A" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/lenin.jpg" alt="Lenin Ramirez" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Lenin Ramirez</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            13.7M
+                        </div>
+                        <span class="featured-pill">Featured Artist</span>
+                    </div>
+                </a>
+
+                <!-- 2. T3R Elemento -->
+                <a href="https://open.spotify.com/artist/34nbQa7Hug9DYkRJpfKNFv?si=C33HlsJ_SgOujiPB_rL2Lw" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/t3r.jpg" alt="T3R Elemento" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">T3R Elemento</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            6.2M
+                        </div>
+                        <span class="featured-pill">Featured Artist</span>
+                    </div>
+                </a>
+
+                <!-- 3. El Rabbanito -->
+                <a href="https://open.spotify.com/artist/4VPLEp6rYxqpf6n0QEkS5z?si=pd1iWIoIRA6GbUgeYKHgOQ" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/rabbanito.jpg" alt="El Rabbanito" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">El Rabbanito</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            2.8M
+                        </div>
+                        <span class="featured-pill">Featured Artist</span>
+                    </div>
+                </a>
+
+                <!-- 4. Yahir Saldivar -->
+                <a href="https://open.spotify.com/artist/19NGyg3ucHFhAP3mwPsggJ?si=32LoUgPJRt689TN9VE9R_w" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/yahir.jpg" alt="Yahir Saldivar" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Yahir Saldivar</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            1.5M
+                        </div>
+                        <span class="featured-pill">Featured Artist</span>
+                    </div>
+                </a>
+
+                <!-- 5. Panchito Arredondo -->
+                <a href="https://open.spotify.com/artist/1enyvmNKgt4BIIkVnt9FAV?si=l8SpgeA4R2GxFWVaYx7xzg" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/panchito.jpg" alt="Panchito Arredondo" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Panchito Arredondo</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            1.4M
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 6. Sucesión M -->
+                <a href="https://open.spotify.com/artist/2Cxqiw8iTT18OMjlq033V6?si=8t8w46r8TjCnyidtLO5T9A" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/sucesionm.jpg" alt="Sucesión M" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Sucesión M</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            278K
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 7. LA DIFERENCIA -->
+                <a href="https://open.spotify.com/artist/56Bgv8NobSf7vr83bUsPWV?si=YtkmwkPJRRyclgNoGXrDPQ" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/diferencia.jpg" alt="LA DIFERENCIA" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">LA DIFERENCIA</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            100K
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 8. CUERNO -->
+                <a href="https://open.spotify.com/artist/6WfZ64HOR7tT0nGmxKQ7Hq?si=QKkip0CTTv6GaZyuu4ofHA" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/cuerno.jpg" alt="CUERNO" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">CUERNO</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            90,951
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 9. Jose Manuel -->
+                <a href="https://open.spotify.com/artist/1rXOb9uSnt1qvPF44FTplr?si=5HXE0KPkRKqVMKoxtP27qQ" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/josem.jpg" alt="Jose Manuel" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Jose Manuel</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            78,976
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 10. whathedgar -->
+                <a href="https://open.spotify.com/artist/5tO4Hf0EVv8MRtvJHgANcB?si=ee3n8SYpShCOmYhrUZbVxw" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/whathedgar.jpg" alt="whathedgar" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">whathedgar</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            45,676
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 11. Emanuel Garcia -->
+                <a href="https://open.spotify.com/artist/7qqYlhGMuHBRqjQ3ly1oHl?si=W10NcPGdRqGy1_5Vd0e1rQ" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/emma.jpg" alt="Emanuel Garcia" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Emanuel Garcia</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            42,233
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 12. Marco Granillo -->
+                <a href="https://open.spotify.com/artist/7nh08l0O7hWA0a0IQIgZmj?si=wY2UhSyIQvaSpn8piyceSQ" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/marcos.jpg" alt="Marco Granillo" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Marco Granillo</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            39,068
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 13. Jason Cota -->
+                <a href="https://open.spotify.com/artist/2lepWRiiExF1dCk2hSyZ12?si=dIoiv0xyTTaXDD5zEOBSKw" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/jasoncota.jpg" alt="Jason Cota" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Jason Cota</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            37,953
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 14. Martín Beltran -->
+                <a href="https://open.spotify.com/artist/7oKwuamCT99LkJECNqSUtR?si=L3ScON0zQ1SjGrqBtbmWDw" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/martinb.jpg" alt="Martín Beltran" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Martín Beltran</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            34,583
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 15. Andi Luan -->
+                <a href="https://open.spotify.com/artist/3nON5znO7TMA84ZKtOhORy?si=gwjih3mtSSGYvyNv7QSGhw" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/andi.jpg" alt="Andi Luan" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Andi Luan</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            13,083
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 16. Cobian Montana -->
+                <a href="https://open.spotify.com/artist/4OVBPUhuX2CwyDSZLgi6Qc?si=zsHNn4dASCG80IkFDT5ATg" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/cobian.jpg" alt="Cobian Montana" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Cobian Montana</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            8,160
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 17. Diana Araujo -->
+                <a href="https://open.spotify.com/artist/2gddhtroO8YVORZShAjf2O?si=bvm3pzvUTyaixwcTlf52Hw" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/diana.jpg" alt="Diana Araujo" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Diana Araujo</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            3,050
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 18. Dseiko -->
+                <a href="https://open.spotify.com/artist/0WqL04uQDLZsWFQ2gOpovx?si=UzzTH9IDQ7aQrDH_AbdwWw" target="_blank" rel="noopener" class="artist-card">
+                    <div class="artist-img-wrapper">
+                        <img src="/assets/images/dseiko.jpg" alt="Dseiko" loading="lazy">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Dseiko</h3>
+                        <div class="spotify-stats">
+                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
+                            500
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--              INFRASTRUCTURE                  -->
+    <!-- ============================================ -->
+    <section class="del-section" style="background-color: var(--del-surface) !important; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 class="del-heading" style="font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 1rem; text-transform: none;">The <span style="color: var(--del-red)">Infrastructure</span></h2>
+                <p class="del-body" style="max-width: 600px; margin: 0 auto; font-size: 1rem;">
+                    We control the narrative. Operating independent, elite divisions to secure publishing, control touring, and produce cinematic visuals.
+                </p>
+            </div>
+
+            <div class="division-grid">
+                <div class="division-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--del-red)" style="margin-bottom: 1rem;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-7.5c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    <h3>DEL Publishing</h3>
+                    <p class="del-body" style="font-size: 0.95rem;">Securing and protecting the compositions of our writers worldwide. We ensure the architects of the sound get paid.</p>
                 </div>
-                <div style="border: 1px solid rgba(255,255,255,0.1); padding: clamp(1.5rem, 4vw, 2rem); background: rgba(255,255,255,0.02);">
-                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--summit-cyan);">IS THERE AN UPFRONT FEE?</h3>
-                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.8;">No. We operate strictly on the backend split. We don't charge submission fees, upload fees, or maintenance fees.</p>
+                <div class="division-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--del-red)" style="margin-bottom: 1rem;"><path d="M22 10V6a2 2 0 0 0-2-2H4c-1.1 0-1.99.9-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2zm-2-1.46c-1.19.69-2 1.99-2 3.46s.81 2.77 2 3.46V18H4v-2.54c1.19-.69 2-1.99 2-3.46s-.81-2.77-2-3.46V6h16v2.54zM11 15h2v2h-2zm0-4h2v2h-2zm0-4h2v2h-2z"/></svg>
+                    <h3>DEL Entertainment</h3>
+                    <p class="del-body" style="font-size: 0.95rem;">Bringing the music to the streets. The premier booking and touring agency for Musica Mexicana across the US and Mexico.</p>
                 </div>
-                <div style="border: 1px solid rgba(255,255,255,0.1); padding: clamp(1.5rem, 4vw, 2rem); background: rgba(255,255,255,0.02);">
-                    <h3 class="summit-heading" style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--summit-cyan);">WHAT GENRES DO YOU ACCEPT?</h3>
-                    <p class="summit-body" style="font-size: 0.95rem; opacity: 0.8;">Our anchor artist operates in Christian Experimental Pop, but we are open to any non-mainstream, avant-garde, or strictly underground sounds. If it sounds like commercial radio, it's not for us.</p>
+                <div class="division-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--del-red)" style="margin-bottom: 1rem;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                    <h3>DEL Studios</h3>
+                    <p class="del-body" style="font-size: 0.95rem;">In-house, high-end visual production. We shoot cinematic music videos and documentaries directly from our LA headquarters.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    {% include 'sections/cta.html' %}
+    <!-- ============================================ -->
+    <!--                 LISTEN NOW                   -->
+    <!-- ============================================ -->
+    <section id="music" class="del-section" style="border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 class="del-heading" style="font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 1rem; text-transform: none;">Listen <span style="color: var(--del-red)">Now</span></h2>
+            <p class="del-body" style="font-size: 1rem; margin-bottom: 2rem;">
+                Stream the hottest tracks from our artists. From the latest hits to classic Regional Mexican anthems, experience the DEL Records sound.
+            </p>
+            
+            <div style="background-color: var(--del-surface-light); padding: 1rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
+                <iframe 
+                    data-testid="embed-iframe" 
+                    style="border-radius: 12px; background-color: #000;" 
+                    src="https://open.spotify.com/embed/playlist/0BW8thbfMrcGoDou1eqjC2?utm_source=generator&theme=0&si=97bc56055ddd4e78" 
+                    width="100%" 
+                    height="352" 
+                    frameBorder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--               LATEST VIDEOS                  -->
+    <!-- ============================================ -->
+    <section id="videos" class="del-section" style="border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="text-align: center;">
+                <h2 class="del-heading" style="font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 1rem; text-transform: none;">Latest <span style="color: var(--del-red)">Videos</span></h2>
+                <p class="del-body" style="font-size: 1rem;">
+                    Watch music videos, behind-the-scenes content, and exclusive performances from our artists.
+                </p>
+            </div>
+
+            <div class="video-container">
+                <!-- Responsive YouTube Embed -->
+                <div class="video-wrapper">
+                    <iframe 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                        src="https://www.youtube.com/embed/eHeWD1TIxH0?si=58wsi7hAJs6j5khE" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            
+            <div style="margin-top: 1.5rem;">
+                <a href="https://www.youtube.com/user/DELRECORDS" target="_blank" rel="noopener" class="del-btn del-btn-red">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="margin-right: 8px;"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4s-6.254,0-7.814,0.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.86-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M9.6,15.2V8.8L15.6,12L9.6,15.2z"/></svg>
+                    Subscribe on YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--            BUSINESS INQUIRIES                -->
+    <!-- ============================================ -->
+    <section class="del-section">
+        <div class="business-box">
+            <h2 class="del-heading" style="font-size: 1.75rem; margin-bottom: 1rem; text-transform: none;">Business Inquiries</h2>
+            <p class="del-body" style="margin-bottom: 2rem;">
+                For business inquiries, partnerships, booking requests, or press inquiries, please reach out to our team.
+            </p>
+            <h3 class="del-heading" style="font-size: 1.2rem; margin-bottom: 0.5rem; text-transform: none;">DEL Records, Inc.</h3>
+            <p class="del-body" style="margin-bottom: 0.5rem;">Los Angeles, California</p>
+            <a href="mailto:info@delrecords.com" style="color: var(--del-red); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600;">info@delrecords.com</a>
+        </div>
+    </section>
+
 {% endblock %}
