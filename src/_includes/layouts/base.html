@@ -1,11 +1,19 @@
 <!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            /* Force dark background instantly to prevent Flash of Light Mode */
+            html, body, #cs-navigation {
+                background-color: #0A0A0A !important;
+                color: #A3A3A3 !important;
+            }
+        </style>
+
         <meta name="description" content="{{ description }}">
         <link rel="canonical" href="{{ client.domain }}{{ page.url }}">
         <meta name="generator" content="{{ eleventy.generator }}">
@@ -46,6 +54,62 @@
             {% block body %}{% endblock %}
         </main>
         {% include "sections/footer.html" %}
+        
+        <!-- ============================================ -->
+        <!-- ============================================ -->
+        
+        <!-- Hidden Google Translate Element -->
+        <div id="google_translate_element" style="display: none;"></div>
 
+        <!-- Engine Script -->
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en', 
+                    includedLanguages: 'en,es', // Only load English and Spanish
+                    autoDisplay: false
+                }, 'google_translate_element');
+            }
+
+            // Function attached to our custom buttons
+            function switchLanguage(lang) {
+                // Set the translation cookie for Google
+                document.cookie = `googtrans=/en/${lang}; path=/;`;
+                document.cookie = `googtrans=/en/${lang}; domain=.${location.hostname}; path=/;`;
+                // Reload page to apply the translation natively
+                location.reload();
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- CSS to completely hide Google's default UI, top banner, and hover glitches -->
+        <style>
+            /* Hide the top banner */
+            .goog-te-banner-frame.skiptranslate { display: none !important; }
+            
+            /* Prevent Google from pushing the navbar down */
+            body { top: 0 !important; } 
+            
+            /* Hide the hover tooltip popup */
+            #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+            .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
+
+            /* KILL THE WEIRD HOVER HIGHLIGHTING ON TEXT */
+            .goog-text-highlight {
+                background-color: transparent !important;
+                box-shadow: none !important;
+            }
+            
+            /* Target the specific background highlight classes Google applies dynamically */
+            body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn-ik {
+                background-color: transparent !important;
+                box-shadow: none !important;
+            }
+
+            /* Google sometimes forces backgrounds on font tags during hover */
+            font {
+                background-color: transparent !important;
+            }
+        </style>
     </body>
 </html>

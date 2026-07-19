@@ -40,6 +40,54 @@
                     <li class="cs-li">
                         <a href="/contact/" class="cs-li-link {% if page.url == '/contact/' %} cs-active {% endif %}">Contact</a>
                     </li>
+                    <!-- DEL Premium Language Switcher -->
+<div class="del-lang-switcher">
+    <button onclick="switchLanguage('en')" class="lang-btn" aria-label="English">English</button>
+    <span class="lang-div">/</span>
+    <button onclick="switchLanguage('es')" class="lang-btn" aria-label="Spanish">Español</button>
+</div>
+
+    <style>
+       /* Styling to match the Abyss Theme Navbar */
+        .del-lang-switcher {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: 1.5rem;
+        background-color: #1A1A1A; /* Surface Light */
+        padding: 0.35rem 0.75rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .del-lang-switcher .lang-btn {
+        background: transparent;
+        border: none;
+        color: #A3A3A3; /* Frost */
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.75rem;
+        cursor: pointer;
+        padding: 0;
+        transition: color 0.3s ease;
+    }
+
+    .del-lang-switcher .lang-btn:hover {
+        color: #FFFFFF; /* White */
+    }
+
+    .del-lang-switcher .lang-div {
+        color: #DC2626; /* DEL Red separator */
+        font-size: 0.8rem;
+        font-weight: 800;
+        user-select: none;
+    }
+    
+    /* Highlight the active language based on the cookie (Optional advanced UX) */
+    html[lang="es"] .del-lang-switcher button[onclick*="'es'"] {
+        color: #FFFFFF;
+    }
+</style>
                 </ul>
             </div>
         </nav>
