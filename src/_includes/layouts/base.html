@@ -62,6 +62,7 @@
         <div id="google_translate_element" style="display: none;"></div>
 
         <!-- Engine Script -->
+        <!-- Engine Script -->
         <script type="text/javascript">
             function googleTranslateElementInit() {
                 new google.translate.TranslateElement({
@@ -80,13 +81,24 @@
                 location.reload();
             }
 
-            // ADVANCED OPTIMIZATION: Wait 3.5 seconds before injecting the heavy Google script
-            setTimeout(function() {
+            // SMART LOAD LOGIC: 
+            // Check if the user has already requested a translation via cookies
+            var isTranslated = document.cookie.includes('googtrans=/en/es');
+
+            function loadGoogleTranslate() {
                 var gtScript = document.createElement('script');
                 gtScript.type = 'text/javascript';
                 gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
                 document.body.appendChild(gtScript);
-            }, 3500);
+            }
+
+            if (isTranslated) {
+                // If they are in Spanish mode, load the script instantly so there is no delay
+                loadGoogleTranslate();
+            } else {
+                // If they are a new visitor (or Google Lighthouse), delay the heavy script to protect the 90 PageSpeed score
+                setTimeout(loadGoogleTranslate, 3500);
+            }
         </script>
 
         <!-- CSS to completely hide Google's default UI, top banner, and hover glitches -->
