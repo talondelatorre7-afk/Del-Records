@@ -9,24 +9,22 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <title>Content Manager</title>
+    <title>Content Manager | DEL Records</title>
 </head>
 
 <body>
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
     <!-- Decap CMS preview pane script -->
-    <!-- Edit this script to customize the preview pane for your blog posts.  -->
-    <!-- Documentation: https://decapcms.org/docs/customization/ -->
     <script type="text/babel">
         const BlogPreview = createClass({
             render: function () {
-                // Get all the props from the collection
                 const data = this.props.entry.get("data").toJS();
                 const { title, author, date: rawDate, image } = data;
+                
                 const date = typeof rawDate === "string" ? new Date(rawDate) : rawDate;
                 let formattedDate = "";
-                if (date) {
+                if (date && !isNaN(date.getTime())) {
                     formattedDate = Intl.DateTimeFormat("en-US", {
                         month: "long",
                         day: "numeric",
@@ -36,21 +34,22 @@
 
                 const cover = this.props.getAsset(image);
 
-                // Create elements for the preview pane in JSX, to be processed by Babel
                 return (
                     <div className="blog">
+                        {/* 1. Cover Image (Top) */}
+                        {cover && <img src={cover.toString()} className="cover" alt="Cover" />}
+
+                        {/* 2. Article Title */}
                         <h1 className="title">{title}</h1>
 
+                        {/* 3. Author & Date Metadata */}
                         <div className="metadata">
                             <span className="author">{author}</span>
                             <span className="dot"></span>
                             <span className="date">{formattedDate}</span>
                         </div>
 
-                        <img src={cover?.toString()} className="cover" alt="Cover" />
-
-                        <hr className="divider" />
-
+                        {/* 4. Article Content Body */}
                         <div className="markdown">
                             {this.props.widgetFor("body")}
                         </div>

@@ -23,7 +23,7 @@ permalink: "/contact/"
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         /* Typography */
@@ -159,7 +159,7 @@ permalink: "/contact/"
 
         select.form-input {
             cursor: pointer;
-            appearance: auto; /* Keeps the native dropdown arrow but styles the box */
+            appearance: auto;
         }
 
         select.form-input option {
@@ -190,6 +190,22 @@ permalink: "/contact/"
         .submit-btn:hover {
             background-color: #EF4444;
             transform: translateY(-2px);
+        }
+
+        /* Demo Submission Block Styling */
+        #demo-fields {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(220, 38, 38, 0.15);
+            border-left: 3px solid var(--del-red);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ============================================ */
@@ -299,6 +315,27 @@ permalink: "/contact/"
                             <option value="General Inquiry">General Inquiry</option>
                         </select>
                     </label>
+
+                    <!-- DYNAMIC DEMO FIELDS -->
+                    <div id="demo-fields" class="hidden">
+                        <p style="color: var(--del-white); font-weight: 700; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">A&R Submission Details</p>
+                        
+                        <label class="form-label">
+                            Instagram Profile
+                            <input type="url" class="form-input demo-input" name="instagram-link" placeholder="https://instagram.com/yourhandle">
+                        </label>
+
+                        <label class="form-label">
+                            Spotify / YouTube Link
+                            <input type="url" class="form-input demo-input" name="streaming-link" placeholder="Link to your best released track">
+                        </label>
+
+                        <label class="form-label" style="margin-bottom: 0;">
+                            Dropbox / Google Drive Link
+                            <input type="url" class="form-input demo-input" name="unreleased-link" placeholder="Link to your unreleased demo">
+                        </label>
+                    </div>
+                    <!-- END DYNAMIC DEMO FIELDS -->
                     
                     <label class="form-label">
                         Message
@@ -324,7 +361,6 @@ permalink: "/contact/"
                     </p>
                 </div>
 
-                <!-- Changed image to a live concert/crowd aesthetic to fit a label -->
                 <div style="margin-top: 4rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); aspect-ratio: 4/3;">
                     <img src="/assets/images/cobian.jpg" alt="Live Concert" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%);" decoding="async">
                 </div>
@@ -333,4 +369,29 @@ permalink: "/contact/"
         </div>
     </section>
 
+    <!-- Script to handle Demo Submission Field toggling -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const typeSelect = document.getElementById('type-265');
+            const demoFields = document.getElementById('demo-fields');
+            const demoInputs = document.querySelectorAll('.demo-input');
+
+            typeSelect.addEventListener('change', function() {
+                if (this.value === 'Demo Submission') {
+                    // Show the fields
+                    demoFields.classList.remove('hidden');
+                    // Make at least one link required so A&R has something to review
+                    demoInputs[2].setAttribute('required', 'true'); // Making the Dropbox/Drive link required as a baseline
+                } else {
+                    // Hide the fields
+                    demoFields.classList.add('hidden');
+                    // Remove required attributes so normal form submissions don't fail
+                    demoInputs.forEach(input => {
+                        input.removeAttribute('required');
+                        input.value = ''; // Optional: clears the fields if they change their mind
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}

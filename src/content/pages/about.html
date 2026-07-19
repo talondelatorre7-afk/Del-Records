@@ -1,6 +1,6 @@
 ---
 title: "About | DEL Records"
-description: "Founded in 2009 in Los Angeles, DEL Records is the premier independent record label defining the global Musica Mexicana movement."
+description: "Founded in 2009 in Los Angeles, DEL Records is the premier independent record label defining the global Regional Mexican movement."
 permalink: "/about/"
 ---
 
@@ -9,9 +9,9 @@ permalink: "/about/"
 {% block head %}
     <style>
         /* ============================================ */
-        /* DEL RECORDS | ABYSS THEME                    */
+        /* DEL RECORDS | MASTER EDITORIAL THEME         */
         /* ============================================ */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
         :root {
             --del-abyss: #0A0A0A; 
@@ -22,223 +22,220 @@ permalink: "/about/"
             --del-white: #FFFFFF;
         }
 
-        /* Typography */
+        /* Cinematic Subtle Film Grain Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        /* Typography Essentials */
         .del-heading {
             font-family: 'Inter', sans-serif !important;
             font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -1px;
             color: var(--del-white);
             margin: 0;
             line-height: 1.1;
+            letter-spacing: -0.03em;
         }
         
         .del-body {
             font-family: 'Inter', sans-serif !important;
             color: var(--del-frost);
-            line-height: 1.6;
-        }
-
-        /* Buttons */
-        .del-btn-red {
-            background-color: var(--del-red); 
-            color: var(--del-white);
-            border: none;
-            padding: 1.25rem 2.5rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            display: inline-flex;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            margin-top: 1rem;
-        }
-        
-        .del-btn-red:hover {
-            background-color: #EF4444;
-            transform: translateY(-2px);
-        }
-
-        /* Layouts */
-        .del-section {
-            background-color: var(--del-abyss);
-            padding: clamp(4rem, 8vw, 6rem) 1.5rem;
-            position: relative;
-            overflow: hidden;
+            line-height: 1.7;
+            font-size: 1.15rem;
         }
 
         /* ============================================ */
-        /* HERO HEADER                                  */
+        /* HERO BANNER                                  */
         /* ============================================ */
         #about-hero {
-            padding: 10rem 1.5rem 4rem 1.5rem;
+            padding: 12rem 1.5rem 6rem 1.5rem;
             text-align: center;
             position: relative;
             background-color: var(--del-abyss);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
             z-index: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 50vh;
-        }
-
-        /* Cinematic Background Effects */
-        .noise-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.05;
-            z-index: 1;
-            pointer-events: none;
+            min-height: 65vh;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
         }
 
         .hero-bg-img {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
             z-index: 0;
-            filter: grayscale(80%) brightness(0.3);
+            filter: grayscale(80%) brightness(0.25);
         }
 
         .bg-glow {
             position: absolute;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(140px);
             z-index: 1;
-            animation: floatGlow 12s infinite ease-in-out alternate;
         }
 
         .glow-red {
-            background: rgba(220, 38, 38, 0.2);
-            width: 50vw;
-            height: 50vw;
-            top: 50%;
-            left: 50%;
+            background: rgba(220, 38, 38, 0.25);
+            width: 60vw; height: 60vw;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
         }
 
-        @keyframes floatGlow {
-            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
         }
 
         /* ============================================ */
-        /* ABOUT CONTENT GRID                           */
+        /* IMPACT STATS STRIP                           */
         /* ============================================ */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: center;
+        .stats-strip {
+            background-color: var(--del-surface);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 4rem 1.5rem;
             position: relative;
             z-index: 2;
         }
 
-        @media (min-width: 850px) {
-            .about-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 5rem;
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .stats-container {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        /* Image Composition */
-        .about-images {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 4 / 5;
-        }
-
-        .img-main {
-            width: 85%;
-            height: 90%;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-        }
-
-        .img-secondary {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 55%;
-            height: 60%;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 6px solid var(--del-abyss);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.9);
-        }
-
-        /* Text Content */
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .topper {
-            color: var(--del-red);
+        .stat-item h3 {
             font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Quote Box */
-        .quote-box {
-            background-color: var(--del-surface);
-            border-left: 3px solid var(--del-red);
-            padding: 2rem;
-            margin: 2.5rem 0;
-            border-radius: 0 12px 12px 0;
-            position: relative;
-        }
-
-        .quote-text {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.15rem;
-            font-style: italic;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
             color: var(--del-white);
-            line-height: 1.6;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -2px;
+        }
+
+        .stat-item span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--del-red);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* ============================================ */
+        /* EDITORIAL STORY BLOCKS                       */
+        /* ============================================ */
+        .story-section {
+            background-color: var(--del-abyss);
+            padding: 8rem 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .story-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 8rem;
+        }
+
+        .story-grid:last-of-type { margin-bottom: 0; }
+
+        @media (min-width: 900px) {
+            .story-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6rem;
+            }
+            .story-grid.reverse .story-text { order: 1; }
+            .story-grid.reverse .story-image { order: 2; }
+        }
+
+        .story-image picture {
+            display: block;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 4/5;
+            filter: grayscale(10%);
+        }
+
+        .story-badge {
+            display: inline-block;
+            background-color: rgba(220, 38, 38, 0.12);
+            color: var(--del-red);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 1px solid rgba(220, 38, 38, 0.25);
             margin-bottom: 1.5rem;
         }
 
-        .quote-author {
-            display: block;
+        .story-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+            text-wrap: balance;
+        }
+
+        /* Massive Editorial Blockquote */
+        .editorial-quote {
+            max-width: 1000px;
+            margin: 8rem auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .editorial-quote h2 {
             font-family: 'Inter', sans-serif;
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
             font-weight: 800;
             color: var(--del-white);
-            font-size: 1rem;
+            line-height: 1.4;
+            font-style: italic;
+            margin-bottom: 2rem;
+            text-wrap: balance;
         }
 
-        .quote-title {
+        .editorial-quote span {
             display: block;
             font-family: 'Inter', sans-serif;
-            color: var(--del-frost);
-            font-size: 0.85rem;
-            margin-top: 0.25rem;
-        }
-
-        .quote-icon {
-            position: absolute;
-            bottom: 1rem;
-            right: 1.5rem;
-            opacity: 0.05;
-            width: 80px;
-            height: auto;
+            color: var(--del-red);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
         }
     </style>
 {% endblock %}
@@ -249,71 +246,118 @@ permalink: "/about/"
     <!--                 HERO BANNER                  -->
     <!-- ============================================ -->
     <header id="about-hero">
-        <!-- Background Image of a Crowd/Concert -->
-        <img class="hero-bg-img" src="https://images.unsplash.com/photo-1540039155732-68048128522e?q=80&w=1920&auto=format&fit=crop" alt="Concert Crowd" loading="eager" decoding="async">
+        <img class="hero-bg-img" src="/assets/images/cobian.jpg" alt="Recording Studio" loading="eager" decoding="async">
         
-        <div class="noise-overlay"></div>
         <div class="bg-glow glow-red"></div>
         
-        <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
-            <span style="color: var(--del-red); font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; display: block; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(0,0,0,0.8);">
-                The Architects of Musica Mexicana
+        <div class="hero-content">
+            <span style="color: var(--del-red); font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; display: block; margin-bottom: 1.5rem;">
+                Est. 2009 • Los Angeles, CA
             </span>
             <h1 class="del-heading" style="font-size: clamp(3rem, 8vw, 5.5rem); text-shadow: 0 10px 30px rgba(0,0,0,0.8);">
-                OUR STORY
+                THE NEXT CHAPTER
             </h1>
+            <p class="del-body" style="max-width: 650px; margin: 1.5rem auto 0 auto; text-shadow: 0 5px 15px rgba(0,0,0,0.8); font-size: 1.25rem;">
+                Inside the generational shift at Regional Mexican music's most influential independent label.
+            </p>
         </div>
     </header>
 
     <!-- ============================================ -->
-    <!--                 ABOUT SECTION                -->
+    <!--                 IMPACT STATS                 -->
     <!-- ============================================ -->
-    <section class="del-section">
-        <div class="about-grid">
-            
-            <!-- Left: Composition Images -->
-            <div class="about-images">
-                <!-- Main Image: Studio / Executive vibe -->
-                <img class="img-main" src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop" alt="Recording Studio" decoding="async">
-                
-                <!-- Secondary Image: Live performance or artist vibe -->
-                <img class="img-secondary" src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=600&auto=format&fit=crop" alt="Live Performance" loading="lazy" decoding="async">
+    <section class="stats-strip">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>11B+</h3>
+                <span>Lifetime Views</span>
             </div>
-
-            <!-- Right: Content -->
-            <div class="about-content">
-                <span class="topper">The Legacy</span>
-                <h2 class="del-heading" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; text-transform: none; line-height: 1.2;">
-                    Pioneering the Sound of a Generation
-                </h2>
-                
-                <p class="del-body" style="margin-bottom: 1rem;">
-                    Founded in 2009 in Los Angeles, California by Angel del Villar, DEL Records was built on a simple premise: to give a massive, undeniable platform to the authentic stories of the streets. We didn't just join the Regional Mexican movement—we actively revolutionized it.
-                </p>
-                <p class="del-body">
-                    Today, DEL Records stands as a global empire. With billions of streams, sold-out international tours, and a roster of the genre's most influential and viral artists, we control the narrative from the recording studio to the stadium stage. We are an independent powerhouse operating elite divisions in Publishing, Entertainment, and Studios.
-                </p>
-
-                <div class="quote-box">
-                    <p class="quote-text">
-                        "We don't follow trends. We sign the artists who create them. DEL Records is more than a record label; it's a culture."
-                    </p>
-                    <span class="quote-author">Angel del Villar</span>
-                    <span class="quote-title">Founder & CEO, DEL Records</span>
-                    
-                    <!-- SVG Quote Icon -->
-                    <svg class="quote-icon" viewBox="0 0 24 24" fill="var(--del-white)" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"/>
-                    </svg>
-                </div>
-
-                <a href="/contact/" class="del-btn-red">Join The Movement</a>
+            <div class="stat-item">
+                <h3>12M+</h3>
+                <span>Subscribers</span>
             </div>
-
+            <div class="stat-item">
+                <h3>21x</h3>
+                <span>Platinum Record</span>
+            </div>
+            <div class="stat-item">
+                <h3>17</h3>
+                <span>Years Indepdendent</span>
+            </div>
         </div>
     </section>
 
-    <!-- Bring in your global Call To Action block if needed -->
+    <!-- ============================================ -->
+    <!--               EDITORIAL STORY                -->
+    <!-- ============================================ -->
+    <section class="story-section">
+        
+        <!-- Story Block 1: The Transition -->
+        <div class="story-grid">
+            <div class="story-image">
+                <picture>
+                    <img src="/assets/images/blog/andrew.webp" alt="Executive Portrait Aesthetic" loading="lazy" decoding="async">
+                </picture>
+            </div>
+            <div class="story-text">
+                <span class="story-badge">The CEO</span>
+                <h2 class="del-heading story-title">A New Era at 26</h2>
+                <p class="del-body">
+                    On November 6, 2025, Andrew del Villar walked into the DEL Records offices in Bell Gardens, California, with a title he had been preparing for most of his adult life. At 26 years old, he became the CEO of the independent label his father, Ángel del Villar, founded in 2009.
+                </p>
+                <p class="del-body">
+                    Andrew didn't just grow up adjacent to the business—he grew up inside it. Starting as a teenager collecting tickets at nightclub doors, he worked his way up through booking theaters and arenas, eventually becoming COO and running the live events operation for one of the most active touring rosters in regional Mexican music.
+                </p>
+            </div>
+        </div>
+
+        <!-- Breakout Quote -->
+        <div class="editorial-quote">
+            <h2>"I started from the bottom; collecting tickets, charging when we were doing the nightclubs, and booking U.S. shows. Then, I kinda became A&R... Just like my dad, I have a good ear and can identify who has potential."</h2>
+            <span>— Andrew del Villar</span>
+        </div>
+
+        <!-- Story Block 2: The Legacy (Reversed) -->
+        <div class="story-grid reverse">
+            <div class="story-image">
+                <picture>
+                    <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=800&auto=format&fit=crop" alt="Live Concert" loading="lazy" decoding="async">
+                </picture>
+            </div>
+            <div class="story-text">
+                <span class="story-badge">The Legacy</span>
+                <h2 class="del-heading story-title">Rewriting the Rules of Latin Music</h2>
+                <p class="del-body">
+                    DEL Records built its empire by championing authenticity. From launching Gerardo Ortiz and Ariel Camacho—whose timeless anthem "No Lo Hice Bien" remains our most-watched video at over 764 million views—to orchestrating a global takeover.
+                </p>
+                <p class="del-body">
+                    In 2023, the math changed for the entire genre. Discovered on social media by Andrew del Villar, Eslabon Armado partnered with Peso Pluma to release <strong>"Ella Baila Sola."</strong> It became the first regional Mexican song to top the Billboard Global 200, hit #4 on the Billboard Hot 100, and achieved 21x Platinum RIAA certification. 
+                </p>
+            </div>
+        </div>
+
+        <!-- Story Block 3: The Future -->
+        <div class="story-grid">
+            <div class="story-image">
+                <picture>
+                    <img src="/assets/images/lenin2.jpg" alt="Studio Mixing Board" loading="lazy" decoding="async">
+                </picture>
+            </div>
+            <div class="story-text">
+                <span class="story-badge">The Future</span>
+                <h2 class="del-heading story-title">Digital Discovery & A Focused Roster</h2>
+                <p class="del-body">
+                    While the core genre stays the same, the methods are changing. Andrew's vision relies heavily on digital instinct and global talent discovery. He has revamped <em>"Canta Con Del"</em> originally a local performance contest into a global digital platform where artists can submit directly through social media.
+                </p>
+                <p class="del-body">
+                    Maintaining an elite, highly focused roster of around 20 artists ensures every act gets the resources they need to dominate. Joining heavyweights like Lenin Ramírez and Yahir Saldívar, the label's newest signees - Marco Granillo, Andi Luan, and Cobian Montana are ready to carry DEL Records into its next chapter.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Call To Action -->
     {% include 'sections/cta.html' %}
 
 {% endblock %}
