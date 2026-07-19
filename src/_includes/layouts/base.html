@@ -86,31 +86,19 @@
 
         <!-- CSS to completely hide Google's default UI, top banner, and hover glitches -->
         <style>
-            /* Hide the top banner */
             .goog-te-banner-frame.skiptranslate { display: none !important; }
-            
-            /* Prevent Google from pushing the navbar down */
             body { top: 0 !important; } 
-            
-            /* Hide the hover tooltip popup */
             #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
             .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
-
-            /* KILL THE WEIRD HOVER HIGHLIGHTING ON TEXT */
-            .goog-text-highlight {
-                background-color: transparent !important;
-                box-shadow: none !important;
-            }
+            .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+            body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn-ik { background-color: transparent !important; box-shadow: none !important; }
+            font { background-color: transparent !important; }
             
-            /* Target the specific background highlight classes Google applies dynamically */
-            body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn-ik {
-                background-color: transparent !important;
-                box-shadow: none !important;
-            }
-
-            /* Google sometimes forces backgrounds on font tags during hover */
-            font {
-                background-color: transparent !important;
+            /* Disable CPU-heavy SVG grain on mobile devices to boost PageSpeed */
+            @media (max-width: 768px) {
+                body::before, .noise-overlay, .hero-noise-overlay, .del-post-wrapper::before {
+                    display: none !important;
+                }
             }
         </style>
     </body>
