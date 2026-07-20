@@ -37,6 +37,13 @@
         --bodyFont: "Inter", Arial, sans-serif;
     }
 
+	html {
+		/* This offsets the anchor links so the fixed header doesn't cover them */
+		scroll-padding-top: 40px; 
+		/* Bonus: Makes the anchor links scroll smoothly instead of instantly teleporting */
+		scroll-behavior: smooth; 
+	}
+
 	html,
 	body {
 		margin: 0;
