@@ -596,6 +596,12 @@
 			&:nth-of-type(6) {
 				transition-delay: 0.3s;
 			}
+			&:nth-of-type(7) { 
+				transition-delay: 0.35s; 
+			} 
+			&:nth-of-type(8) { 
+				transition-delay: 0.4s; 
+			}
 		}
 
 		.cs-li-link {
@@ -949,8 +955,7 @@
 
 		.cs-li {
 			list-style: none;
-			padding: calc(32 / 16 * 1rem) 0;
-			/* prevent flexbox from squishing it */
+			padding: calc(21 / 16 * 1rem) 0; /* Changed from 32 to 16 */
 			flex: none;
 		}
 
@@ -963,7 +968,7 @@
 			color: var(--bodyTextColor);
 			display: block;
 			position: relative;
-			font-weight: 600;
+			font-weight: 400;
 
 			&:hover {
 				&:before {
