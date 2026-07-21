@@ -147,7 +147,6 @@ permalink: "/about/"
             background-color: var(--del-abyss);
             padding: 8rem 1.5rem;
             position: relative;
-            z-index: 2;
         }
 
         .story-grid {
@@ -172,13 +171,14 @@ permalink: "/about/"
         }
 
         .story-image picture {
-            display: block;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-        }
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    z-index: 10000; /* Pulls the portraits above the film grain */
+}
 
         .story-image img {
             width: 100%;
@@ -237,7 +237,17 @@ permalink: "/about/"
             letter-spacing: 2px;
             font-size: 0.9rem;
         }
+        /* Pull the global footer above the grain overlay */
+footer {
+    position: relative;
+    z-index: 10000;
+}
+/* Push ONLY the global navigation above the grain and the images */
+#cs-navigation {
+    z-index: 99999 !important;
+}
     </style>
+    
 {% endblock %}
 
 {% block body %}
