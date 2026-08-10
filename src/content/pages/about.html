@@ -7,12 +7,19 @@ permalink: "/about/"
 {% extends "layouts/base.html" %}
 
 {% block head %}
+    <!-- Preconnect and load fonts efficiently (Fixes the render-blocking @import penalty) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Preload Largest Contentful Paint (LCP) Image (Fixes the LCP loading penalty) -->
+    <link rel="preload" as="image" href="/assets/images/cobian.jpg" fetchpriority="high">
+
     <style>
         /* ============================================ */
         /* DEL RECORDS | MASTER EDITORIAL THEME         */
         /* ============================================ */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
+        
         :root {
             --del-abyss: #0A0A0A; 
             --del-red: #DC2626; 
@@ -54,7 +61,7 @@ permalink: "/about/"
         /* HERO BANNER                                  */
         /* ============================================ */
         #about-hero {
-            padding: 12rem 1.5rem 6rem 1.5rem;
+            padding: 10rem 1.5rem 4rem 1.5rem; /* Tightened top/bottom padding */
             text-align: center;
             position: relative;
             background-color: var(--del-abyss);
@@ -63,7 +70,7 @@ permalink: "/about/"
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 65vh;
+            min-height: 55vh; /* Reduced height for cohesiveness */
             border-bottom: 1px solid rgba(255,255,255,0.05);
             overflow: hidden;
         }
@@ -102,7 +109,7 @@ permalink: "/about/"
         .stats-strip {
             background-color: var(--del-surface);
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 4rem 1.5rem;
+            padding: 3rem 1.5rem; /* Tightened padding */
             position: relative;
             z-index: 2;
         }
@@ -112,7 +119,7 @@ permalink: "/about/"
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
+            gap: 2.5rem; /* Tightened gap */
             text-align: center;
         }
 
@@ -145,7 +152,7 @@ permalink: "/about/"
         /* ============================================ */
         .story-section {
             background-color: var(--del-abyss);
-            padding: 8rem 1.5rem;
+            padding: 5rem 1.5rem; /* Tightened from 8rem to 5rem */
             position: relative;
         }
 
@@ -154,9 +161,9 @@ permalink: "/about/"
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 4rem;
+            gap: 3.5rem; /* Tightened gap */
             align-items: center;
-            margin-bottom: 8rem;
+            margin-bottom: 5rem; /* Tightened from 8rem to 5rem */
         }
 
         .story-grid:last-of-type { margin-bottom: 0; }
@@ -164,21 +171,21 @@ permalink: "/about/"
         @media (min-width: 900px) {
             .story-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 6rem;
+                gap: 5rem;
             }
             .story-grid.reverse .story-text { order: 1; }
             .story-grid.reverse .story-image { order: 2; }
         }
 
         .story-image picture {
-    display: block;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.05);
-    position: relative;
-    z-index: 10000; /* Pulls the portraits above the film grain */
-}
+            display: block;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            z-index: 10000; /* Pulls the portraits above the film grain */
+        }
 
         .story-image img {
             width: 100%;
@@ -212,7 +219,7 @@ permalink: "/about/"
         /* Massive Editorial Blockquote */
         .editorial-quote {
             max-width: 1000px;
-            margin: 8rem auto;
+            margin: 4.5rem auto; /* Tightened from 8rem to 4.5rem */
             padding: 0 1.5rem;
             text-align: center;
         }
@@ -237,15 +244,16 @@ permalink: "/about/"
             letter-spacing: 2px;
             font-size: 0.9rem;
         }
+        
         /* Pull the global footer above the grain overlay */
-footer {
-    position: relative;
-    z-index: 10000;
-}
-/* Push ONLY the global navigation above the grain and the images */
-#cs-navigation {
-    z-index: 99999 !important;
-}
+        footer {
+            position: relative;
+            z-index: 10000;
+        }
+        /* Push ONLY the global navigation above the grain and the images */
+        #cs-navigation {
+            z-index: 99999 !important;
+        }
     </style>
     
 {% endblock %}
