@@ -1,0 +1,15 @@
+name: Daily Spotify Data Update
+
+on:
+  schedule:
+    # Runs at 10:00 UTC every day (approx 3:00 AM PST)
+    - cron: '0 10 * * *'
+  workflow_dispatch: # Allows you to manually trigger it from GitHub if needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages Rebuild
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/73b85f6c-6cfc-4207-801f-e750199a878a"
