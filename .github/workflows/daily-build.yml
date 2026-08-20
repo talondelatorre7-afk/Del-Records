@@ -2,8 +2,8 @@ name: Daily Spotify Data Update
 
 on:
   schedule:
-    # Runs at 10:00 UTC every day (approx 3:00 AM PST)
-    - cron: '0 10 * * *'
+    # Runs at 22:00 UTC every day (3:00 PM PST), right after Spotify updates global stats
+    - cron: '0 22 * * *'
   workflow_dispatch: # Allows you to manually trigger it from GitHub if needed
 
 jobs:
