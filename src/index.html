@@ -122,16 +122,14 @@ tags: "sitemap"
         /* ============================================ */
         #del-hero {
             position: relative;
-            /* Extra top padding for navigation bar clearance */
             padding: 12rem 1.5rem 6rem 1.5rem;
             z-index: 1;
             display: flex;
             align-items: center; 
             background-color: var(--del-abyss);
-            overflow: hidden; /* Contains the background animations */
+            overflow: hidden;
         }
 
-        /* Cinematic Film Grain Overlay */
         .hero-noise-overlay {
             position: absolute;
             top: 0;
@@ -144,7 +142,6 @@ tags: "sitemap"
             pointer-events: none;
         }
 
-        /* Ambient Animated Glows */
         .hero-bg-glow {
             position: absolute;
             border-radius: 50%;
@@ -184,7 +181,7 @@ tags: "sitemap"
 
         .hero-subtext {
             font-size: clamp(1.1rem, 3vw, 1.35rem);
-            color: #CCCCCC; /* Softer gray/white to match screenshot */
+            color: #CCCCCC;
             max-width: 700px;
             text-align: left;
             line-height: 1.5;
@@ -202,26 +199,23 @@ tags: "sitemap"
         /* ============================================ */
         /* ARTIST CARDS                                 */
         /* ============================================ */
-        
-        /* Featured Artists Grid (Big Cards) */
         .roster-grid-featured {
             display: grid;
-            grid-template-columns: 1fr; /* Full width on mobile */
+            grid-template-columns: 1fr;
             gap: 1rem;
             margin-top: 2.5rem;
         }
 
-        /* Normal Artists Grid (Small Cards) */
         .roster-grid-normal {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
             margin-top: 1rem;
         }
 
         @media (min-width: 768px) {
             .roster-grid-featured { 
-                grid-template-columns: repeat(4, 1fr); /* 4 Column Desktop Spread */
+                grid-template-columns: repeat(4, 1fr); 
                 gap: 1.5rem; 
             }
             .roster-grid-normal { 
@@ -284,7 +278,6 @@ tags: "sitemap"
             line-height: 1.2;
         }
 
-        /* Slightly larger name for featured artists on desktop */
         @media (min-width: 768px) {
             .roster-grid-featured .artist-name {
                 font-size: 1.35rem;
@@ -356,14 +349,32 @@ tags: "sitemap"
         }
 
         /* ============================================ */
-        /* LATEST VIDEOS                                */
+        /* LATEST VIDEOS (AUTO-GRID)                    */
         /* ============================================ */
         .video-container {
             background-color: var(--del-surface-light);
             border-radius: 16px;
             padding: 1rem;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .video-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .video-wrapper {
@@ -372,36 +383,15 @@ tags: "sitemap"
             border-radius: 12px;
             overflow: hidden;
             position: relative;
+            background-color: #000;
         }
 
-        .video-wrapper img {
-            width: 100%;
+        .video-wrapper iframe {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
             height: 100%;
-            object-fit: cover;
-        }
-
-        .youtube-play {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 40px;
-            background-color: #FF0000;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .youtube-play::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            border-left: 14px solid white;
-            margin-left: 4px;
         }
 
         /* ============================================ */
@@ -425,7 +415,6 @@ tags: "sitemap"
     <!--                   HERO                       -->
     <!-- ============================================ -->
     <section id="del-hero">
-        <!-- Cinematic Background Effects -->
         <div class="hero-noise-overlay"></div>
         <div class="hero-bg-glow glow-red"></div>
         <div class="hero-bg-glow glow-dark"></div>
@@ -477,266 +466,41 @@ tags: "sitemap"
                 </p>
             </div>
             
-            <!-- FEATURED ARTISTS GRID -->
+            <!-- AUTOMATIC TOP 4 FEATURED ARTISTS -->
             <div class="roster-grid-featured">
-                <!-- 1. Lenin Ramirez -->
-                <a href="https://open.spotify.com/artist/3hTffafUYLLgO4yuPAxb5U" target="_blank" rel="noopener" class="artist-card">
+                {% for artist in spotify.featured %}
+                <a href="{{ artist.url }}" target="_blank" rel="noopener" class="artist-card">
                     <div class="artist-img-wrapper">
-                        <img src="/assets/images/lenin.jpg" alt="Lenin Ramirez" width="400" height="400" loading="lazy">
+                        <img src="{{ artist.image }}" alt="{{ artist.name }}" width="400" height="400" loading="lazy">
                     </div>
                     <div class="artist-info">
-                        <h3 class="artist-name">Lenin Ramirez</h3>
+                        <h3 class="artist-name">{{ artist.name }}</h3>
                         <div class="spotify-stats">
                             <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.lenin }}
+                            {{ artist.monthlyListeners }}
                         </div>
                         <span class="featured-pill">Featured Artist</span>
                     </div>
                 </a>
-
-                <!-- 2. T3R Elemento -->
-                <a href="https://open.spotify.com/artist/34nbQa7Hug9DYkRJpfKNFv" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/t3r.jpg" alt="T3R Elemento" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">T3R Elemento</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.t3r }}
-                        </div>
-                        <span class="featured-pill">Featured Artist</span>
-                    </div>
-                </a>
-                
-                <!-- 3. El Rabbanito -->
-                <a href="https://open.spotify.com/artist/4VPLEp6rYxqpf6n0QEkS5z" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/rabbanito.jpg" alt="El Rabbanito" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">El Rabbanito</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.rabbanito }}
-                        </div>
-                        <span class="featured-pill">Featured Artist</span>
-                    </div>
-                </a>
-
-                <!-- 4. Yahir Saldivar -->
-                <a href="https://open.spotify.com/artist/19NGyg3ucHFhAP3mwPsggJ" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/yahir.jpg" alt="Yahir Saldivar" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Yahir Saldivar</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.yahir }}
-                        </div>
-                        <span class="featured-pill">Featured Artist</span>
-                    </div>
-                </a>
+                {% endfor %}
             </div>
 
-            <!-- NORMAL ARTISTS GRID -->
+            <!-- AUTOMATIC RANKED NORMAL ARTISTS -->
             <div class="roster-grid-normal">
-                <!-- 5. Panchito Arredondo -->
-                <a href="https://open.spotify.com/artist/1enyvmNKgt4BIIkVnt9FAV" target="_blank" rel="noopener" class="artist-card">
+                {% for artist in spotify.normal %}
+                <a href="{{ artist.url }}" target="_blank" rel="noopener" class="artist-card">
                     <div class="artist-img-wrapper">
-                        <img src="/assets/images/panchito.jpg" alt="Panchito Arredondo" width="400" height="400" loading="lazy">
+                        <img src="{{ artist.image }}" alt="{{ artist.name }}" width="400" height="400" loading="lazy">
                     </div>
                     <div class="artist-info">
-                        <h3 class="artist-name">Panchito Arredondo</h3>
+                        <h3 class="artist-name">{{ artist.name }}</h3>
                         <div class="spotify-stats">
                             <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.panchito }}
+                            {{ artist.monthlyListeners }}
                         </div>
                     </div>
                 </a>
-
-                <!-- 6. Sucesión M -->
-                <a href="https://open.spotify.com/artist/2Cxqiw8iTT18OMjlq033V6" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/sucesionm.jpg" alt="Sucesión M" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Sucesión M</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.sucesionm }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 7. LA DIFERENCIA -->
-                <a href="https://open.spotify.com/artist/56Bgv8NobSf7vr83bUsPWV" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/diferencia.jpg" alt="LA DIFERENCIA" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">LA DIFERENCIA</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.diferencia }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 8. CUERNO -->
-                <a href="https://open.spotify.com/artist/6WfZ64HOR7tT0nGmxKQ7Hq" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/cuerno.jpg" alt="CUERNO" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">CUERNO</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.cuerno }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 9. Jose Manuel -->
-                <a href="https://open.spotify.com/artist/1rXOb9uSnt1qvPF44FTplr" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/josem.jpg" alt="Jose Manuel" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Jose Manuel</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.josem }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 10. whathedgar -->
-                <a href="https://open.spotify.com/artist/5tO4Hf0EVv8MRtvJHgANcB" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/whathedgar.jpg" alt="whathedgar" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">whathedgar</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.whathedgar }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 11. Emanuel Garcia -->
-                <a href="https://open.spotify.com/artist/7qqYlhGMuHBRqjQ3ly1oHl" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/emma.jpg" alt="Emanuel Garcia" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Emanuel Garcia</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.emanuel }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 12. Marco Granillo -->
-                <a href="https://open.spotify.com/artist/7nh08l0O7hWA0a0IQIgZmj" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/marcos.jpg" alt="Marco Granillo" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Marco Granillo</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.marco }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 13. Jason Cota -->
-                <a href="https://open.spotify.com/artist/2lepWRiiExF1dCk2hSyZ12" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/jasoncota.jpg" alt="Jason Cota" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Jason Cota</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.jason }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 14. Martín Beltran -->
-                <a href="https://open.spotify.com/artist/7oKwuamCT99LkJECNqSUtR" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/martinb.jpg" alt="Martín Beltran" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Martín Beltran</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.martin }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 15. Andi Luan -->
-                <a href="https://open.spotify.com/artist/3nON5znO7TMA84ZKtOhORy" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/andi.jpg" alt="Andi Luan" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Andi Luan</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.andi }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 16. Cobian Montana -->
-                <a href="https://open.spotify.com/artist/4OVBPUhuX2CwyDSZLgi6Qc" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/cobian.jpg" alt="Cobian Montana" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Cobian Montana</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.cobian }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 17. Diana Araujo -->
-                <a href="https://open.spotify.com/artist/2gddhtroO8YVORZShAjf2O" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/diana.jpg" alt="Diana Araujo" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Diana Araujo</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.diana }}
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 18. Dseiko -->
-                <a href="https://open.spotify.com/artist/0WqL04uQDLZsWFQ2gOpovx" target="_blank" rel="noopener" class="artist-card">
-                    <div class="artist-img-wrapper">
-                        <img src="/assets/images/dseiko.jpg" alt="Dseiko" width="400" height="400" loading="lazy">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Dseiko</h3>
-                        <div class="spotify-stats">
-                            <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zM20.16 9.6C16.44 7.38 9.6 7.2 5.64 8.4c-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.68-1.38 12.12-1.14 16.44 1.44.54.3 1.02.6 1.02 1.14 0 .539-.48.78-2.34.78z"/></svg>
-                            {{ spotify.dseiko }}
-                        </div>
-                    </div>
-                </a>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -803,7 +567,7 @@ tags: "sitemap"
     <!--               LATEST VIDEOS                  -->
     <!-- ============================================ -->
     <section id="videos" class="del-section" style="border-top: 1px solid rgba(255,255,255,0.05);">
-        <div style="max-width: 800px; margin: 0 auto;">
+        <div style="max-width: 1200px; margin: 0 auto;">
             <div style="text-align: center;">
                 <h2 class="del-heading" style="font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 1rem; text-transform: none;">Latest <span style="color: var(--del-red)">Videos</span></h2>
                 <p class="del-body" style="font-size: 1rem;">
@@ -812,49 +576,25 @@ tags: "sitemap"
             </div>
 
             <div class="video-container">
-                <!-- Responsive YouTube Embed -->
-                <div class="video-wrapper">
-                    <iframe 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-                        src="https://www.youtube.com/embed/eHeWD1TIxH0?si=58wsi7hAJs6j5khE" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        loading="lazy"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="story-spacer" style="height: 1rem;"></div>
-                <div class="video-wrapper">
-                    <iframe 
-                        style="position: absolute; top: 1; left: 0; width: 100%; height: 100%;" 
-                        src="https://www.youtube.com/embed/_BYgtLtjhnE?si=TlDOLn5gJWtkNmLR" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        loading="lazy"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="story-spacer" style="height: 1rem;"></div>
-                <div class="video-wrapper">
-                    <iframe 
-                        style="position: absolute; top: 1; left: 0; width: 100%; height: 100%;" 
-                        src="https://www.youtube.com/embed/vPdY1yIymbA?si=2Ixx4tFEU3Coe8cb"
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        loading="lazy"
-                        allowfullscreen>
-                    </iframe>  
+                <div class="video-grid">
+                    {% for videoId in youtube %}
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/{{ videoId }}" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            loading="lazy"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
             
-            <div style="margin-top: 1.5rem;">
-                <a href="https://www.youtube.com/user/DELRECORDS" target="_blank" rel="noopener" class="del-btn del-btn-red">
+            <div style="margin-top: 2.5rem; display: flex; justify-content: center;">
+                <a href="https://www.youtube.com/user/DELRECORDS" target="_blank" rel="noopener" class="del-btn del-btn-red" style="max-width: 300px;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="margin-right: 8px;"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4s-6.254,0-7.814,0.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.86-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M9.6,15.2V8.8L15.6,12L9.6,15.2z"/></svg>
                     Subscribe on YouTube
                 </a>
