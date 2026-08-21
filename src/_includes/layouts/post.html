@@ -402,7 +402,8 @@
             <div class="del-meta-row">
                 <div class="del-meta-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    <span>{{ author }}</span>
+                    <!-- FIX: Added a default fallback if author data is missing -->
+                    <span>{{ author | default("DEL Records Editorial") }}</span>
                 </div>
                 
                 <div class="del-meta-item">
@@ -412,16 +413,24 @@
 
                 <div class="del-share-tools">
                     <span>Share:</span>
-                    <a href="#" class="del-share-icon" aria-label="Share on Facebook">
+                    
+                    <!-- Facebook Share -->
+                    <a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), 'facebook-share-dialog', 'width=800,height=600'); return false;" class="del-share-icon" aria-label="Share on Facebook">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </a>
-                    <a href="#" class="del-share-icon" aria-label="Share on X">
+                    
+                    <!-- X (Twitter) Share -->
+                    <a href="#" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), 'twitter-share-dialog', 'width=800,height=600'); return false;" class="del-share-icon" aria-label="Share on X">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
                     </a>
-                    <a href="#" class="del-share-icon" aria-label="Share on LinkedIn">
+                    
+                    <!-- LinkedIn Share -->
+                    <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), 'linkedin-share-dialog', 'width=800,height=600'); return false;" class="del-share-icon" aria-label="Share on LinkedIn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     </a>
-                    <a href="#" class="del-share-icon" aria-label="Copy Link">
+                    
+                    <!-- Copy to Clipboard -->
+                    <a href="#" onclick="navigator.clipboard.writeText(window.location.href); this.style.color = 'var(--del-red)'; setTimeout(() => this.style.color = '', 2000); return false;" class="del-share-icon" aria-label="Copy Link" title="Copy link to clipboard">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                     </a>
                 </div>
@@ -452,10 +461,31 @@
             {{ content | safe }}
         </article>
 
-        <!-- Conditionally render the Featured Posts section ONLY if there is more than 1 post -->
+        <!-- FIX: Replaced the broken include with a hardcoded loop that matches your CSS -->
         {% if collections.post | length > 1 %}
             <section class="del-featured-section">
-                {% include 'components/featured-posts.html' %}
+                <div class="cs-container">
+                    <h2 class="cs-title">Latest Updates</h2>
+                    <ul class="cs-card-group">
+                        <!-- Loops through the 3 most recent posts -->
+                        {% for item in collections.post | reverse %}
+                            {% if loop.index0 < 3 %}
+                            <li class="cs-item">
+                                <a href="{{ item.url }}" class="cs-picture">
+                                    <img src="{{ item.data.image | default('/assets/images/deep1.png') }}" alt="{{ item.data.imageAlt | default('DEL Records News') }}" loading="lazy" width="400" height="220">
+                                </a>
+                                <div class="cs-item-text-group">
+                                    <h3 class="cs-h3">{{ item.data.title }}</h3>
+                                    <a href="{{ item.url }}" class="cs-link">
+                                        Read Article 
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                                    </a>
+                                </div>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
             </section>
         {% endif %}
 
