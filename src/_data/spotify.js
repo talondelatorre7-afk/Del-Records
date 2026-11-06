@@ -19,7 +19,8 @@ module.exports = async function() {
         { name: "Andi Luan", id: "3nON5znO7TMA84ZKtOhORy", image: "/assets/images/andi.jpg", fallbackListeners: "8,724" },
         { name: "Cobian Montana", id: "4OVBPUhuX2CwyDSZLgi6Qc", image: "/assets/images/cobian.jpg", fallbackListeners: "2,555" },
         { name: "Diana Araujo", id: "2gddhtroO8YVORZShAjf2O", image: "/assets/images/diana.jpg", fallbackListeners: "698" },
-        { name: "Dseiko", id: "0WqL04uQDLZsWFQ2gOpovx", image: "/assets/images/dseiko.jpg", fallbackListeners: "470" }
+        { name: "Dseiko", id: "0WqL04uQDLZsWFQ2gOpovx", image: "/assets/images/dseiko.jpg", fallbackListeners: "470" },
+        { name: "Christian Farias y Su Escuadron", id: "4VS0WLSCz4CPk9soMpsMrz", image: "/assets/images/christian.webp", fallbackListeners: "0" }
     ];
 
     const fetchHTML = (url) => {
